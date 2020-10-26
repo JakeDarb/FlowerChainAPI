@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\FlowerChainAPI\\FlowerChainAPI\\FlowerChainAPI.csproj": {}
+    "D:\\FlowerChainAPI\\git\\FlowerChainAPI\\FlowerChainAPI.csproj": {}
   },
   "projects": {
-    "D:\\FlowerChainAPI\\FlowerChainAPI\\FlowerChainAPI.csproj": {
+    "D:\\FlowerChainAPI\\git\\FlowerChainAPI\\FlowerChainAPI.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\FlowerChainAPI\\FlowerChainAPI\\FlowerChainAPI.csproj",
+        "projectUniqueName": "D:\\FlowerChainAPI\\git\\FlowerChainAPI\\FlowerChainAPI.csproj",
         "projectName": "FlowerChainAPI",
-        "projectPath": "D:\\FlowerChainAPI\\FlowerChainAPI\\FlowerChainAPI.csproj",
+        "projectPath": "D:\\FlowerChainAPI\\git\\FlowerChainAPI\\FlowerChainAPI.csproj",
         "packagesPath": "C:\\Users\\jonat\\.nuget\\packages\\",
-        "outputPath": "D:\\FlowerChainAPI\\FlowerChainAPI\\obj\\",
+        "outputPath": "D:\\FlowerChainAPI\\git\\FlowerChainAPI\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\jonat\\AppData\\Roaming\\NuGet\\NuGet.Config"

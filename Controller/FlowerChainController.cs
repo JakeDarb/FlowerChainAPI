@@ -1,4 +1,6 @@
 using System.Collections.Generic;
+using FlowerChainAPI.Database;
+using FlowerChainAPI.Models.Domain;
 using Microsoft.AspNetCore.Mvc;
 
 
@@ -9,11 +11,30 @@ namespace FlowerChainAPI.Controller
 
      public class FlowerChainController : ControllerBase
      {
-         //Get: api/controller
+         private readonly FlowerChainContext _context;
+
+        public FlowerChainController(FlowerChainContext context) => _context = context;
+         
+         
+         //Get: api/flowerchain
          [HttpGet]
-         public ActionResult<IEnumerable<string>> GetString()
+         public ActionResult<IEnumerable<FlowerShop>> GetFlowerShop()
          {
-             return new string[]  {"seppe", "suckt", "in", "csgo"};
+             return _context.FlowerShop;
          }
+
+        [HttpGet("{id}")]
+        public ActionResult<Order> GetOrderId(int id)
+        {
+            var OrderItem = _context.Order.Find(id);
+            
+            if(OrderItem == null){
+                return NotFound();
+            }else{
+                return OrderItem;
+            }
+        }
+
+         
      }
  }
