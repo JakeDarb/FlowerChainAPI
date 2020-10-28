@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "D:\\FlowerChainAPI\\FlowerChainAPI\\FlowerChainAPI.csproj": {}
+    "C:\\Users\\info\\Desktop\\Github\\FlowerChainAPI\\FlowerChainAPI.csproj": {}
   },
   "projects": {
-    "D:\\FlowerChainAPI\\FlowerChainAPI\\FlowerChainAPI.csproj": {
+    "C:\\Users\\info\\Desktop\\Github\\FlowerChainAPI\\FlowerChainAPI.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\FlowerChainAPI\\FlowerChainAPI\\FlowerChainAPI.csproj",
+        "projectUniqueName": "C:\\Users\\info\\Desktop\\Github\\FlowerChainAPI\\FlowerChainAPI.csproj",
         "projectName": "FlowerChainAPI",
-        "projectPath": "D:\\FlowerChainAPI\\FlowerChainAPI\\FlowerChainAPI.csproj",
-        "packagesPath": "C:\\Users\\jonat\\.nuget\\packages\\",
-        "outputPath": "D:\\FlowerChainAPI\\FlowerChainAPI\\obj\\",
+        "projectPath": "C:\\Users\\info\\Desktop\\Github\\FlowerChainAPI\\FlowerChainAPI.csproj",
+        "packagesPath": "C:\\Users\\info\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\info\\Desktop\\Github\\FlowerChainAPI\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\jonat\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "C:\\Users\\info\\AppData\\Roaming\\NuGet\\NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "netcoreapp3.1"
@@ -49,10 +49,6 @@
             "Pomelo.EntityFrameworkCore.MySql": {
               "target": "Package",
               "version": "[3.2.3, )"
-            },
-            "Swagger-Net": {
-              "target": "Package",
-              "version": "[8.3.35.101, )"
             },
             "Swashbuckle.AspNetCore": {
               "target": "Package",
