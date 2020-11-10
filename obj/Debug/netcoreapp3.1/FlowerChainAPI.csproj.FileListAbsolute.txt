@@ -144,3 +144,11 @@ C:\Users\info\Desktop\Github\FlowerChainAPI\obj\Debug\netcoreapp3.1\staticwebass
 C:\Users\info\Desktop\Github\FlowerChainAPI\obj\Debug\netcoreapp3.1\FlowerChainAPI.dll
 C:\Users\info\Desktop\Github\FlowerChainAPI\obj\Debug\netcoreapp3.1\FlowerChainAPI.pdb
 C:\Users\info\Desktop\Github\FlowerChainAPI\obj\Debug\netcoreapp3.1\FlowerChainAPI.genruntimeconfig.cache
+C:\Users\gebruiker\Desktop\School\flowerChainApi\FlowerChainAPI\obj\Debug\netcoreapp3.1\FlowerChainAPI.csprojAssemblyReference.cache
+C:\Users\gebruiker\Desktop\School\flowerChainApi\FlowerChainAPI\obj\Debug\netcoreapp3.1\FlowerChainAPI.AssemblyInfoInputs.cache
+C:\Users\gebruiker\Desktop\School\flowerChainApi\FlowerChainAPI\obj\Debug\netcoreapp3.1\FlowerChainAPI.AssemblyInfo.cs
+C:\Users\gebruiker\Desktop\School\flowerChainApi\FlowerChainAPI\obj\Debug\netcoreapp3.1\FlowerChainAPI.csproj.CoreCompileInputs.cache
+C:\Users\gebruiker\Desktop\School\flowerChainApi\FlowerChainAPI\obj\Debug\netcoreapp3.1\FlowerChainAPI.MvcApplicationPartsAssemblyInfo.cs
+C:\Users\gebruiker\Desktop\School\flowerChainApi\FlowerChainAPI\obj\Debug\netcoreapp3.1\FlowerChainAPI.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\gebruiker\Desktop\School\flowerChainApi\FlowerChainAPI\obj\Debug\netcoreapp3.1\FlowerChainAPI.dll
+C:\Users\gebruiker\Desktop\School\flowerChainApi\FlowerChainAPI\obj\Debug\netcoreapp3.1\FlowerChainAPI.pdb

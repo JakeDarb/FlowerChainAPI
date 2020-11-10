@@ -5,6 +5,8 @@ namespace FlowerChainAPI.Models.Domain
     {
         public int Id { get; set; }
         public String bouquetName{get;set;}
+        public double price { get; set; }
         public int  amountSold { get; set; }
+        public String description {get;set;}
     }
 }
