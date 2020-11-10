@@ -16,24 +16,14 @@ namespace FlowerChainAPI.Controller
         public FlowerChainController(FlowerChainContext context) => _context = context;
          
          
-         //Get: api/flowerchain
+         //Get: api/FlowerBouquets
          [HttpGet]
-         public ActionResult<IEnumerable<FlowerShop>> GetFlowerShop()
+         public ActionResult<IEnumerable<FlowerBouquet>> GetFlowerBouquet()
          {
-             return _context.FlowerShop;
+             return _context.FlowerBouquet;
          }
-
-        [HttpGet("{id}")]
-        public ActionResult<Order> GetOrderId(int id)
-        {
-            var OrderItem = _context.Order.Find(id);
-            
-            if(OrderItem == null){
-                return NotFound();
-            }else{
-                return OrderItem;
-            }
-        }
+        
+        
 
          
      }

@@ -2,7 +2,7 @@ using System.Runtime.ExceptionServices;
 using System;
 namespace FlowerChainAPI.Models.Domain
 {
-    public class FlowerShop_Supplier
+    public class FlowerShopSupplier
     {
         public int id { get; set; }
 

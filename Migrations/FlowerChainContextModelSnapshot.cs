@@ -17,9 +17,43 @@ namespace FlowerChainAPI.Migrations
                 .HasAnnotation("ProductVersion", "3.1.9")
                 .HasAnnotation("Relational:MaxIdentifierLength", 64);
 
+            modelBuilder.Entity("FlowerChainAPI.Models.Domain.Customer", b =>
+                {
+                    b.Property<int>("id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    b.Property<bool>("newsLetter")
+                        .HasColumnType("tinyint(1)");
+
+                    b.Property<int>("personId")
+                        .HasColumnType("int");
+
+                    b.HasKey("id");
+
+                    b.ToTable("Customer");
+                });
+
+            modelBuilder.Entity("FlowerChainAPI.Models.Domain.Employee", b =>
+                {
+                    b.Property<int>("id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    b.Property<int>("personId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("workStartDate")
+                        .HasColumnType("datetime(6)");
+
+                    b.HasKey("id");
+
+                    b.ToTable("Employee");
+                });
+
             modelBuilder.Entity("FlowerChainAPI.Models.Domain.Flower", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<int>("id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
@@ -29,14 +63,14 @@ namespace FlowerChainAPI.Migrations
                     b.Property<double>("price")
                         .HasColumnType("double");
 
-                    b.HasKey("Id");
+                    b.HasKey("id");
 
                     b.ToTable("Flower");
                 });
 
             modelBuilder.Entity("FlowerChainAPI.Models.Domain.FlowerBouquet", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<int>("id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
@@ -52,14 +86,51 @@ namespace FlowerChainAPI.Migrations
                     b.Property<double>("price")
                         .HasColumnType("double");
 
-                    b.HasKey("Id");
+                    b.HasKey("id");
 
                     b.ToTable("FlowerBouquet");
                 });
 
+            modelBuilder.Entity("FlowerChainAPI.Models.Domain.FlowerBouquetOrder", b =>
+                {
+                    b.Property<int>("id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    b.Property<int>("amount")
+                        .HasColumnType("int");
+
+                    b.Property<int>("flowerBouquetId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("orderId")
+                        .HasColumnType("int");
+
+                    b.HasKey("id");
+
+                    b.ToTable("FlowerBouquetOrder");
+                });
+
+            modelBuilder.Entity("FlowerChainAPI.Models.Domain.FlowerFlowerBouquet", b =>
+                {
+                    b.Property<int>("id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    b.Property<int>("flowerBouquetId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("flowerId")
+                        .HasColumnType("int");
+
+                    b.HasKey("id");
+
+                    b.ToTable("FlowerFlowerBouquet");
+                });
+
             modelBuilder.Entity("FlowerChainAPI.Models.Domain.FlowerShop", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<int>("id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
@@ -84,14 +155,31 @@ namespace FlowerChainAPI.Migrations
                     b.Property<string>("streetName")
                         .HasColumnType("longtext");
 
-                    b.HasKey("Id");
+                    b.HasKey("id");
 
                     b.ToTable("FlowerShop");
                 });
 
+            modelBuilder.Entity("FlowerChainAPI.Models.Domain.FlowerShopSupplier", b =>
+                {
+                    b.Property<int>("id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    b.Property<int>("flowerShopId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("supplierId")
+                        .HasColumnType("int");
+
+                    b.HasKey("id");
+
+                    b.ToTable("FlowerShopSupplier");
+                });
+
             modelBuilder.Entity("FlowerChainAPI.Models.Domain.Order", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<int>("id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
@@ -101,20 +189,16 @@ namespace FlowerChainAPI.Migrations
                     b.Property<string>("personId")
                         .HasColumnType("longtext");
 
-                    b.HasKey("Id");
+                    b.HasKey("id");
 
                     b.ToTable("Order");
                 });
 
             modelBuilder.Entity("FlowerChainAPI.Models.Domain.Person", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<int>("id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
-
-                    b.Property<string>("Discriminator")
-                        .IsRequired()
-                        .HasColumnType("longtext");
 
                     b.Property<string>("city")
                         .HasColumnType("longtext");
@@ -149,16 +233,14 @@ namespace FlowerChainAPI.Migrations
                     b.Property<string>("streetName")
                         .HasColumnType("longtext");
 
-                    b.HasKey("Id");
+                    b.HasKey("id");
 
                     b.ToTable("Person");
-
-                    b.HasDiscriminator<string>("Discriminator").HasValue("Person");
                 });
 
             modelBuilder.Entity("FlowerChainAPI.Models.Domain.Supplier", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<int>("id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
@@ -183,39 +265,9 @@ namespace FlowerChainAPI.Migrations
                     b.Property<string>("streetName")
                         .HasColumnType("longtext");
 
-                    b.HasKey("Id");
+                    b.HasKey("id");
 
                     b.ToTable("Supplier");
-                });
-
-            modelBuilder.Entity("FlowerChainAPI.Models.Domain.Customer", b =>
-                {
-                    b.HasBaseType("FlowerChainAPI.Models.Domain.Person");
-
-                    b.Property<bool>("newsLetter")
-                        .HasColumnType("tinyint(1)");
-
-                    b.Property<int>("personId")
-                        .HasColumnType("int");
-
-                    b.HasDiscriminator().HasValue("Customer");
-                });
-
-            modelBuilder.Entity("FlowerChainAPI.Models.Domain.Employee", b =>
-                {
-                    b.HasBaseType("FlowerChainAPI.Models.Domain.Person");
-
-                    b.Property<int>("id")
-                        .HasColumnType("int");
-
-                    b.Property<int>("personId")
-                        .HasColumnName("Employee_personId")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime>("workStartDate")
-                        .HasColumnType("datetime(6)");
-
-                    b.HasDiscriminator().HasValue("Employee");
                 });
 #pragma warning restore 612, 618
         }

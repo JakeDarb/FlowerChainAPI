@@ -3,7 +3,7 @@ namespace FlowerChainAPI.Models.Domain
 {
     public class Supplier
     {
-        public int Id { get; set; }
+        public int id { get; set; }
         public String shopName { get; set; }
         public String streetName { get; set; }
         public String postalCode { get; set; }

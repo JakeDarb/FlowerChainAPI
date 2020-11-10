@@ -63,13 +63,7 @@ D:\FlowerChainAPI\FlowerChainAPI\bin\Debug\netcoreapp3.1\runtimes\win-arm64\nati
 D:\FlowerChainAPI\FlowerChainAPI\bin\Debug\netcoreapp3.1\runtimes\win-x64\native\e_sqlite3.dll
 D:\FlowerChainAPI\FlowerChainAPI\bin\Debug\netcoreapp3.1\runtimes\win-x86\native\e_sqlite3.dll
 D:\FlowerChainAPI\FlowerChainAPI\obj\Debug\netcoreapp3.1\FlowerChainAPI.csproj.CopyComplete
-D:\FlowerChainAPI\FlowerChainAPI\bin\Debug\netcoreapp3.1\FromHeaderAttribute.dll
-D:\FlowerChainAPI\FlowerChainAPI\bin\Debug\netcoreapp3.1\System.Net.Http.Formatting.dll
-D:\FlowerChainAPI\FlowerChainAPI\bin\Debug\netcoreapp3.1\System.Web.Http.dll
-D:\FlowerChainAPI\FlowerChainAPI\bin\Debug\netcoreapp3.1\System.Web.Http.WebHost.dll
 D:\FlowerChainAPI\FlowerChainAPI\bin\Debug\netcoreapp3.1\Microsoft.OpenApi.dll
-D:\FlowerChainAPI\FlowerChainAPI\bin\Debug\netcoreapp3.1\Newtonsoft.Json.Bson.dll
-D:\FlowerChainAPI\FlowerChainAPI\bin\Debug\netcoreapp3.1\Swagger.Net.dll
 D:\FlowerChainAPI\FlowerChainAPI\bin\Debug\netcoreapp3.1\Swashbuckle.AspNetCore.Swagger.dll
 D:\FlowerChainAPI\FlowerChainAPI\bin\Debug\netcoreapp3.1\Swashbuckle.AspNetCore.SwaggerGen.dll
 D:\FlowerChainAPI\FlowerChainAPI\bin\Debug\netcoreapp3.1\Swashbuckle.AspNetCore.SwaggerUI.dll

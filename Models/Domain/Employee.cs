@@ -2,7 +2,7 @@ using System.Runtime.ExceptionServices;
 using System;
 namespace FlowerChainAPI.Models.Domain 
 {
-    public class Employee : Person
+    public class Employee 
     {
         public int id { get; set; }
 

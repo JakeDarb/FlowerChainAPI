@@ -20,6 +20,9 @@ namespace FlowerChainAPI.Database
         public DbSet<Order> Order {get; set;}
         public DbSet<Person> Person {get; set;}
         public DbSet<Supplier> Supplier {get; set;}
+        public DbSet<FlowerFlowerBouquet> FlowerFlowerBouquet {get; set;}
+        public DbSet<FlowerBouquetOrder> FlowerBouquetOrder {get; set;}
+        public DbSet<FlowerShopSupplier> FlowerShopSupplier {get; set;}
 
     }
 

@@ -1,9 +1,9 @@
 using System;
 namespace FlowerChainAPI.Models.Domain
 {
-    public class Customer : Person
+    public class Customer
     {
-        public int Id{get; set; }
+        public int id{get; set; }
 
         public Boolean newsLetter {get;set;}
 
