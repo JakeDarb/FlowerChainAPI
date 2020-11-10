@@ -103,9 +103,9 @@ namespace FlowerChainAPI.Migrations
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
                     shopName = table.Column<string>(nullable: true),
                     streetName = table.Column<string>(nullable: true),
-                    postalCode = table.Column<string>(nullable: true),
                     houseNumber = table.Column<string>(nullable: true),
                     city = table.Column<string>(nullable: true),
+                    postalCode = table.Column<string>(nullable: true),
                     phoneNumber = table.Column<string>(nullable: true),
                     email = table.Column<string>(nullable: true)
                 },
@@ -204,6 +204,16 @@ namespace FlowerChainAPI.Migrations
                     { 2, 2, "Zonnenstraal", "4 rozen en 6 vergeet me nietjes", 5.0 },
                     { 3, 4, "Welkom terug", "4 rozen, 2 madeliefjes en 3 violetjes", 6.0 },
                     { 4, 1, "Tot ziens", "4 rozen, 2 madeliefjes, 3 violetjes en 2 vergeet-me-nietjes", 5.0 }
+                });
+
+            migrationBuilder.InsertData(
+                table: "FlowerShop",
+                columns: new[] { "id", "city", "email", "houseNumber", "phoneNumber", "postalCode", "shopName", "streetName" },
+                values: new object[,]
+                {
+                    { 1, "Mechelen", "debloemenkrans@hotmail.com", "52", "015635478", "2800", "De bloemenkrans", "Van hoeystraat" },
+                    { 2, "Korbeek-Lo", "blomke@hotmail.com", "3", "015435878", "3000", "Het Blomke", "Dorpstraat" },
+                    { 3, "Tielt-Winge", "petersbloemen@hotmail.com", "14", "016258843", "3390", "Peters bloemen", "Broekstraat" }
                 });
         }
 

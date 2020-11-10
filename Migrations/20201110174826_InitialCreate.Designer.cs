@@ -9,7 +9,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace FlowerChainAPI.Migrations
 {
     [DbContext(typeof(FlowerChainContext))]
-    [Migration("20201110172637_InitialCreate")]
+    [Migration("20201110174826_InitialCreate")]
     partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -220,6 +220,41 @@ namespace FlowerChainAPI.Migrations
                     b.HasKey("id");
 
                     b.ToTable("FlowerShop");
+
+                    b.HasData(
+                        new
+                        {
+                            id = 1,
+                            city = "Mechelen",
+                            email = "debloemenkrans@hotmail.com",
+                            houseNumber = "52",
+                            phoneNumber = "015635478",
+                            postalCode = "2800",
+                            shopName = "De bloemenkrans",
+                            streetName = "Van hoeystraat"
+                        },
+                        new
+                        {
+                            id = 2,
+                            city = "Korbeek-Lo",
+                            email = "blomke@hotmail.com",
+                            houseNumber = "3",
+                            phoneNumber = "015435878",
+                            postalCode = "3000",
+                            shopName = "Het Blomke",
+                            streetName = "Dorpstraat"
+                        },
+                        new
+                        {
+                            id = 3,
+                            city = "Tielt-Winge",
+                            email = "petersbloemen@hotmail.com",
+                            houseNumber = "14",
+                            phoneNumber = "016258843",
+                            postalCode = "3390",
+                            shopName = "Peters bloemen",
+                            streetName = "Broekstraat"
+                        });
                 });
 
             modelBuilder.Entity("FlowerChainAPI.Models.Domain.FlowerShopSupplier", b =>

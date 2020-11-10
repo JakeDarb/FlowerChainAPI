@@ -7,7 +7,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace FlowerChainAPI.Controller
  {
-     [Route("api/[controller]")]
+     [Route("FlowerChainAPI/[controller]")]
      [ApiController]
 
      public class FlowerChainController : ControllerBase
@@ -17,14 +17,14 @@ namespace FlowerChainAPI.Controller
         public FlowerChainController(FlowerChainContext context) => _context = context;
          
          
-         //Get: api/FlowerBouquets
+         //Get: FlowerChainAPI/FlowerBouquets
          [HttpGet]
          public ActionResult<IEnumerable<FlowerBouquet>> GetFlowerBouquet()
          {
              return _context.FlowerBouquet;
          }
        
-
+        //Get: FlowerChainAPI/FlowerBouquets/n
         [HttpGet("{id}")]
         public ActionResult<FlowerBouquet> GetBouquetId(int id)
         {
