@@ -15,11 +15,10 @@ namespace FlowerChainAPI.Database
 
         public DbSet<Employee> Employee {get; set;}
         public DbSet<FlowerBouquet> FlowerBouquet {get; set;}
-        public DbSet<Flowers> Flowers {get; set;}
+        public DbSet<Flower> Flower {get; set;}
         public DbSet<FlowerShop> FlowerShop {get; set;}
         public DbSet<Order> Order {get; set;}
         public DbSet<Person> Person {get; set;}
-        public DbSet<Products> Products {get; set;}
         public DbSet<Supplier> Supplier {get; set;}
 
     }

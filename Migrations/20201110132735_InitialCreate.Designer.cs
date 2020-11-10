@@ -3,14 +3,16 @@ using System;
 using FlowerChainAPI.Database;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace FlowerChainAPI.Migrations
 {
     [DbContext(typeof(FlowerChainContext))]
-    partial class FlowerChainContextModelSnapshot : ModelSnapshot
+    [Migration("20201110132735_InitialCreate")]
+    partial class InitialCreate
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
