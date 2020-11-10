@@ -9,7 +9,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace FlowerChainAPI.Migrations
 {
     [DbContext(typeof(FlowerChainContext))]
-    [Migration("20201110141617_InitialCreate")]
+    [Migration("20201110172637_InitialCreate")]
     partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -68,6 +68,32 @@ namespace FlowerChainAPI.Migrations
                     b.HasKey("id");
 
                     b.ToTable("Flower");
+
+                    b.HasData(
+                        new
+                        {
+                            id = 1,
+                            flowerType = "Roos",
+                            price = 1.2
+                        },
+                        new
+                        {
+                            id = 2,
+                            flowerType = "Madeliefje",
+                            price = 1.3
+                        },
+                        new
+                        {
+                            id = 3,
+                            flowerType = "Vergeet-me-nietje",
+                            price = 1.0
+                        },
+                        new
+                        {
+                            id = 4,
+                            flowerType = "Violetje",
+                            price = 1.3999999999999999
+                        });
                 });
 
             modelBuilder.Entity("FlowerChainAPI.Models.Domain.FlowerBouquet", b =>
@@ -91,6 +117,40 @@ namespace FlowerChainAPI.Migrations
                     b.HasKey("id");
 
                     b.ToTable("FlowerBouquet");
+
+                    b.HasData(
+                        new
+                        {
+                            id = 1,
+                            amountSold = 3,
+                            bouquetName = "Liefde",
+                            description = "4 rozen en 2 violetjes",
+                            price = 4.0
+                        },
+                        new
+                        {
+                            id = 2,
+                            amountSold = 2,
+                            bouquetName = "Zonnenstraal",
+                            description = "4 rozen en 6 vergeet me nietjes",
+                            price = 5.0
+                        },
+                        new
+                        {
+                            id = 3,
+                            amountSold = 4,
+                            bouquetName = "Welkom terug",
+                            description = "4 rozen, 2 madeliefjes en 3 violetjes",
+                            price = 6.0
+                        },
+                        new
+                        {
+                            id = 4,
+                            amountSold = 1,
+                            bouquetName = "Tot ziens",
+                            description = "4 rozen, 2 madeliefjes, 3 violetjes en 2 vergeet-me-nietjes",
+                            price = 5.0
+                        });
                 });
 
             modelBuilder.Entity("FlowerChainAPI.Models.Domain.FlowerBouquetOrder", b =>

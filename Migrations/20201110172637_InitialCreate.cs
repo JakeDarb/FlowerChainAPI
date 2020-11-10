@@ -183,6 +183,28 @@ namespace FlowerChainAPI.Migrations
                 {
                     table.PrimaryKey("PK_Supplier", x => x.id);
                 });
+
+            migrationBuilder.InsertData(
+                table: "Flower",
+                columns: new[] { "id", "flowerType", "price" },
+                values: new object[,]
+                {
+                    { 1, "Roos", 1.2 },
+                    { 2, "Madeliefje", 1.3 },
+                    { 3, "Vergeet-me-nietje", 1.0 },
+                    { 4, "Violetje", 1.3999999999999999 }
+                });
+
+            migrationBuilder.InsertData(
+                table: "FlowerBouquet",
+                columns: new[] { "id", "amountSold", "bouquetName", "description", "price" },
+                values: new object[,]
+                {
+                    { 1, 3, "Liefde", "4 rozen en 2 violetjes", 4.0 },
+                    { 2, 2, "Zonnenstraal", "4 rozen en 6 vergeet me nietjes", 5.0 },
+                    { 3, 4, "Welkom terug", "4 rozen, 2 madeliefjes en 3 violetjes", 6.0 },
+                    { 4, 1, "Tot ziens", "4 rozen, 2 madeliefjes, 3 violetjes en 2 vergeet-me-nietjes", 5.0 }
+                });
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)

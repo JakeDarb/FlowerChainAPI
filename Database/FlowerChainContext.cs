@@ -24,6 +24,22 @@ namespace FlowerChainAPI.Database
         public DbSet<FlowerBouquetOrder> FlowerBouquetOrder {get; set;}
         public DbSet<FlowerShopSupplier> FlowerShopSupplier {get; set;}
 
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<Flower>().HasData(new Flower {id = 1, flowerType="Roos", price=1.2});
+            modelBuilder.Entity<Flower>().HasData(new Flower {id = 2, flowerType="Madeliefje", price=1.3});
+            modelBuilder.Entity<Flower>().HasData(new Flower {id = 3, flowerType="Vergeet-me-nietje", price=1});
+            modelBuilder.Entity<Flower>().HasData(new Flower {id = 4, flowerType="Violetje", price=1.4});
+            
+            modelBuilder.Entity<FlowerBouquet>().HasData(new FlowerBouquet {id = 1, bouquetName="Liefde", price=4 , amountSold=3 ,description="4 rozen en 2 violetjes"});
+            modelBuilder.Entity<FlowerBouquet>().HasData(new FlowerBouquet {id = 2, bouquetName="Zonnenstraal", price=5 , amountSold=2 ,description="4 rozen en 6 vergeet me nietjes"});
+            modelBuilder.Entity<FlowerBouquet>().HasData(new FlowerBouquet {id = 3, bouquetName="Welkom terug", price=6 , amountSold=4 ,description="4 rozen, 2 madeliefjes en 3 violetjes"});
+            modelBuilder.Entity<FlowerBouquet>().HasData(new FlowerBouquet {id = 4, bouquetName="Tot ziens", price=5 , amountSold=1 ,description="4 rozen, 2 madeliefjes, 3 violetjes en 2 vergeet-me-nietjes"});
+        }
+
+        
+
     }
 
    
