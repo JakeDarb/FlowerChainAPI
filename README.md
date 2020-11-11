@@ -7,3 +7,11 @@ When you’ve created your database, enter “dotnet ef database update” in th
 
 To make changes in the database, launch swagger by typing “dotnet run” in the terminal.
 CTRL + left click one of the localhosts to launch swagger in your browser.
+
+# To Do
+
+- algemeen overzicht welke boeketten het beste verkopen
+- overzicht welk boeket het beste verkoopt per winkel
+- overzicht van welke winkels het meeste omzet draaien
+- overzicht van hoe een winkel het doet qua sales met andere winkels in de buurt (zelfde regio)
+- unit testing
