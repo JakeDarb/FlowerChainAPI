@@ -1,64 +1,58 @@
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using FlowerChainAPI.Database;
 using FlowerChainAPI.Models.Domain;
+using FlowerChainAPI.Repositories;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 
 namespace FlowerChainAPI.Controller
- {
-     [Route("FlowerChainAPI/[controller]")]
+{
+    [Route("FlowerChainAPI/[controller]")]
      [ApiController]
 
      public class OrderController : ControllerBase
      {
-         private readonly FlowerChainContext _context;
+         
          private readonly ILogger<FlowerChainContext> _logger;
+         private readonly IOrderRepository _orders;
+         
 
-        public OrderController(FlowerChainContext context, ILogger<FlowerChainContext> logger) {
-            _context = context;
+        public OrderController(IOrderRepository orders , ILogger<FlowerChainContext> logger) {
+            
             _logger = logger;
+            _orders = orders;
 
         } 
          
          
-         
+         //Get FlowerChainAPI/Order
+         [HttpGet]
+         public async Task<IActionResult> GetOrders()
+         {
+             _logger.LogInformation("Getting all orders");
+             return  Ok(await _orders.GetAllOrdersAsync());
+         }
+
+        //Post FlowerChainAPI/Order
+         [HttpPost]
+         public async Task<IActionResult> Postorder(Order order)
+         {
+             _logger.LogInformation("Posting an order");
+             return Ok(await _orders.CreateOrderAsync(order));
+         }
+
+         //Delete FlowerChainAPI/Order
+         [HttpDelete]
+         public async Task<IActionResult> DeleteOrder(int id)
+         {
+             _logger.LogInformation("Deleting an order");
+             return Ok(await _orders.DeleteOrderAsync(id));
+         }
        
-       
+        
 
-       //Post: FlowerChainAPI/order
-        [HttpPost]
-        public ActionResult<Order> PostOrderItem(Order input)
-        {
-            _logger.LogInformation("Creating a order", input);
-
-            _context.Order.Add(input);
-            _context.SaveChanges();
-            
-            return CreatedAtAction("GetOrderItem", new Order{id= input.id}, input);
-        }
-
-
-
-
-        //Delete FlowerChainAPI/Order/n
-        [HttpDelete("{id}")]
-        public ActionResult<Order> DeleteOrderItem(int id)
-        {
-            _logger.LogInformation("Deleting a order", id);
-
-            var orderItem = _context.Order.Find(id);
-            if(orderItem == null){
-                return NotFound();
-            }else{
-                
-                _context.Order.Remove(orderItem);
-                _context.SaveChanges();
-
-                return orderItem;
-
-            }
-        }
          
      }
  }

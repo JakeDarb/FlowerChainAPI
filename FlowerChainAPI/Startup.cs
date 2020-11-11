@@ -13,6 +13,7 @@ using Pomelo.EntityFrameworkCore.MySql.Infrastructure;
 using FlowerChainAPI.Models;
 using FlowerChainAPI.Database;
 using Microsoft.Extensions.Logging;
+using FlowerChainAPI.Repositories;
 
 namespace FlowerChainAPI
 {
@@ -23,6 +24,10 @@ namespace FlowerChainAPI
         public void ConfigureServices(IServiceCollection services)
         {
            services.AddMvc(option => option.EnableEndpointRouting = false).SetCompatibilityVersion(CompatibilityVersion.Latest); 
+           
+           services.AddScoped<IFlowerBouquetRepository, FlowerBouquetRepository>();
+           services.AddScoped<IFlowerShopRepository, FlowerShopRepository>();
+           services.AddScoped<IOrderRepository, OrderRepository>();
 
            //database connection
            services.AddDbContextPool<FlowerChainContext>(    
