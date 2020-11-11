@@ -35,6 +35,13 @@ namespace FlowerChainAPI.Controller
              return  Ok(await _orders.GetAllOrdersAsync());
          }
 
+         [HttpGet("{id}")]
+         public async Task<IActionResult> GetOrderById(int id)
+         {
+             _logger.LogInformation("Getting a flowershop by id");
+             return Ok(await _orders.GetOrderByIdAsync(id));
+         }
+
         //Post FlowerChainAPI/Order
          [HttpPost]
          public async Task<IActionResult> Postorder(Order order)

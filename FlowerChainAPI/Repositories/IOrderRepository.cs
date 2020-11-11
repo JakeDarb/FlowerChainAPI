@@ -13,5 +13,6 @@ namespace FlowerChainAPI.Repositories
         Task<List<Order>> GetAllOrdersAsync();
         Task<Order> CreateOrderAsync(Order order);
         Task<Order> DeleteOrderAsync(int id);
+        Task<Order> GetOrderByIdAsync(int id);
     }
 }

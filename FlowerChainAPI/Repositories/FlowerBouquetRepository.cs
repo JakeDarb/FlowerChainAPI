@@ -24,6 +24,11 @@ namespace FlowerChainAPI.Repositories
         {
             return await _context.FlowerBouquet.ToListAsync();
         }
+
+        public async Task<FlowerBouquet> GetBouquetByNameAsync(string bouquetName)
+        {
+           return await _context.FlowerBouquet.FirstOrDefaultAsync(x => x.bouquetName == bouquetName);
+        }
     }
 
 

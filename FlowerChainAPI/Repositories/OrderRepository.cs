@@ -47,6 +47,13 @@ namespace FlowerChainAPI.Repositories
         {
             return await _context.Order.ToListAsync();
         }
+
+        public async Task<Order> GetOrderByIdAsync(int id)
+        {
+           return await _context.Order.FirstOrDefaultAsync(x => x.id == id);
+        }
+
+        
     }
 
 

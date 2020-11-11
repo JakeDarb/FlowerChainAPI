@@ -34,6 +34,13 @@ namespace FlowerChainAPI.Controller
              _logger.LogInformation("Getting all flowershops");
              return  Ok(await _shops.GetAllShopsAsync());
          }
+
+         [HttpGet("{shopName}")]
+         public async Task<IActionResult> GetShopByName(string shopName)
+         {
+             _logger.LogInformation("Getting a flowershop by Name");
+             return Ok(await _shops.GetShopByNameAsync(shopName));
+         }
        
         
 

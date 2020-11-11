@@ -11,5 +11,6 @@ namespace FlowerChainAPI.Repositories
     public interface IFlowerBouquetRepository
     {
         Task<List<FlowerBouquet>> GetAllBouquetsAsync();
+        Task<FlowerBouquet> GetBouquetByNameAsync(string bouquetName);
     }
 }
