@@ -10,12 +10,12 @@ namespace FlowerChainAPI.Controller
      [Route("FlowerChainAPI/[controller]")]
      [ApiController]
 
-     public class FlowerChainController : ControllerBase
+     public class FlowerBouquetController : ControllerBase
      {
          private readonly FlowerChainContext _context;
          private readonly ILogger<FlowerChainContext> _logger;
 
-        public FlowerChainController(FlowerChainContext context, ILogger<FlowerChainContext> logger) {
+        public FlowerBouquetController(FlowerChainContext context, ILogger<FlowerChainContext> logger) {
             _context = context;
             _logger = logger;
 
