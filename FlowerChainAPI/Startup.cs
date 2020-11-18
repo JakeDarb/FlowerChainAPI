@@ -14,11 +14,17 @@ using FlowerChainAPI.Models;
 using FlowerChainAPI.Database;
 using Microsoft.Extensions.Logging;
 using FlowerChainAPI.Repositories;
+using Microsoft.Extensions.Configuration;
 
 namespace FlowerChainAPI
 {
     public class Startup
     {
+
+        private IConfiguration Configuration { get; }
+        public Startup(IConfiguration configuration)
+        => this.Configuration = configuration;
+        
         // This method gets called by the runtime. Use this method to add services to the container.
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
@@ -34,7 +40,7 @@ namespace FlowerChainAPI
                 dbContextOptions => dbContextOptions
                     .UseMySql(
                         // Replace with your connection string.
-                        "server=localhost;port=8889;user=root;password=root;database=FlowerChain",
+                        Configuration.GetConnectionString("GlobalDatabase"),
                         // Replace with your server version and type.
                         mySqlOptions => mySqlOptions
                             .ServerVersion(new Version(8, 0, 21), ServerType.MySql)
