@@ -9,15 +9,15 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace FlowerChainAPI.Migrations
 {
     [DbContext(typeof(FlowerChainContext))]
-    [Migration("20201110174826_InitialCreate")]
+    [Migration("20210102185704_InitialCreate")]
     partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "3.1.9")
-                .HasAnnotation("Relational:MaxIdentifierLength", 64);
+                .HasAnnotation("Relational:MaxIdentifierLength", 64)
+                .HasAnnotation("ProductVersion", "5.0.1");
 
             modelBuilder.Entity("FlowerChainAPI.Models.Domain.Customer", b =>
                 {
@@ -280,8 +280,8 @@ namespace FlowerChainAPI.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    b.Property<DateTime>("datTimeOrder")
-                        .HasColumnType("datetime(6)");
+                    b.Property<string>("dateTimeOrder")
+                        .HasColumnType("longtext");
 
                     b.Property<string>("personId")
                         .HasColumnType("longtext");

@@ -12,10 +12,10 @@ namespace FlowerChainAPI.Migrations
                 name: "Customer",
                 columns: table => new
                 {
-                    id = table.Column<int>(nullable: false)
+                    id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
-                    newsLetter = table.Column<bool>(nullable: false),
-                    personId = table.Column<int>(nullable: false)
+                    newsLetter = table.Column<bool>(type: "tinyint(1)", nullable: false),
+                    personId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -26,10 +26,10 @@ namespace FlowerChainAPI.Migrations
                 name: "Employee",
                 columns: table => new
                 {
-                    id = table.Column<int>(nullable: false)
+                    id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
-                    workStartDate = table.Column<DateTime>(nullable: false),
-                    personId = table.Column<int>(nullable: false)
+                    workStartDate = table.Column<DateTime>(type: "datetime(6)", nullable: false),
+                    personId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -40,10 +40,10 @@ namespace FlowerChainAPI.Migrations
                 name: "Flower",
                 columns: table => new
                 {
-                    id = table.Column<int>(nullable: false)
+                    id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
-                    flowerType = table.Column<string>(nullable: true),
-                    price = table.Column<double>(nullable: false)
+                    flowerType = table.Column<string>(type: "longtext", nullable: true),
+                    price = table.Column<double>(type: "double", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -54,12 +54,12 @@ namespace FlowerChainAPI.Migrations
                 name: "FlowerBouquet",
                 columns: table => new
                 {
-                    id = table.Column<int>(nullable: false)
+                    id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
-                    bouquetName = table.Column<string>(nullable: true),
-                    price = table.Column<double>(nullable: false),
-                    amountSold = table.Column<int>(nullable: false),
-                    description = table.Column<string>(nullable: true)
+                    bouquetName = table.Column<string>(type: "longtext", nullable: true),
+                    price = table.Column<double>(type: "double", nullable: false),
+                    amountSold = table.Column<int>(type: "int", nullable: false),
+                    description = table.Column<string>(type: "longtext", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -70,11 +70,11 @@ namespace FlowerChainAPI.Migrations
                 name: "FlowerBouquetOrder",
                 columns: table => new
                 {
-                    id = table.Column<int>(nullable: false)
+                    id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
-                    orderId = table.Column<int>(nullable: false),
-                    flowerBouquetId = table.Column<int>(nullable: false),
-                    amount = table.Column<int>(nullable: false)
+                    orderId = table.Column<int>(type: "int", nullable: false),
+                    flowerBouquetId = table.Column<int>(type: "int", nullable: false),
+                    amount = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -85,10 +85,10 @@ namespace FlowerChainAPI.Migrations
                 name: "FlowerFlowerBouquet",
                 columns: table => new
                 {
-                    id = table.Column<int>(nullable: false)
+                    id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
-                    flowerId = table.Column<int>(nullable: false),
-                    flowerBouquetId = table.Column<int>(nullable: false)
+                    flowerId = table.Column<int>(type: "int", nullable: false),
+                    flowerBouquetId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -99,15 +99,15 @@ namespace FlowerChainAPI.Migrations
                 name: "FlowerShop",
                 columns: table => new
                 {
-                    id = table.Column<int>(nullable: false)
+                    id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
-                    shopName = table.Column<string>(nullable: true),
-                    streetName = table.Column<string>(nullable: true),
-                    houseNumber = table.Column<string>(nullable: true),
-                    city = table.Column<string>(nullable: true),
-                    postalCode = table.Column<string>(nullable: true),
-                    phoneNumber = table.Column<string>(nullable: true),
-                    email = table.Column<string>(nullable: true)
+                    shopName = table.Column<string>(type: "longtext", nullable: true),
+                    streetName = table.Column<string>(type: "longtext", nullable: true),
+                    houseNumber = table.Column<string>(type: "longtext", nullable: true),
+                    city = table.Column<string>(type: "longtext", nullable: true),
+                    postalCode = table.Column<string>(type: "longtext", nullable: true),
+                    phoneNumber = table.Column<string>(type: "longtext", nullable: true),
+                    email = table.Column<string>(type: "longtext", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -118,10 +118,10 @@ namespace FlowerChainAPI.Migrations
                 name: "FlowerShopSupplier",
                 columns: table => new
                 {
-                    id = table.Column<int>(nullable: false)
+                    id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
-                    flowerShopId = table.Column<int>(nullable: false),
-                    supplierId = table.Column<int>(nullable: false)
+                    flowerShopId = table.Column<int>(type: "int", nullable: false),
+                    supplierId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -132,10 +132,10 @@ namespace FlowerChainAPI.Migrations
                 name: "Order",
                 columns: table => new
                 {
-                    id = table.Column<int>(nullable: false)
+                    id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
-                    datTimeOrder = table.Column<DateTime>(nullable: false),
-                    personId = table.Column<string>(nullable: true)
+                    dateTimeOrder = table.Column<string>(type: "longtext", nullable: true),
+                    personId = table.Column<string>(type: "longtext", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -146,19 +146,19 @@ namespace FlowerChainAPI.Migrations
                 name: "Person",
                 columns: table => new
                 {
-                    id = table.Column<int>(nullable: false)
+                    id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
-                    firstName = table.Column<string>(nullable: true),
-                    lastName = table.Column<string>(nullable: true),
-                    streetName = table.Column<string>(nullable: true),
-                    postalCode = table.Column<string>(nullable: true),
-                    houseNumber = table.Column<string>(nullable: true),
-                    city = table.Column<string>(nullable: true),
-                    phoneNumber = table.Column<string>(nullable: true),
-                    email = table.Column<string>(nullable: true),
-                    dateOfBirth = table.Column<DateTime>(nullable: false),
-                    isEmployee = table.Column<bool>(nullable: false),
-                    flowerShopId = table.Column<int>(nullable: false)
+                    firstName = table.Column<string>(type: "longtext", nullable: true),
+                    lastName = table.Column<string>(type: "longtext", nullable: true),
+                    streetName = table.Column<string>(type: "longtext", nullable: true),
+                    postalCode = table.Column<string>(type: "longtext", nullable: true),
+                    houseNumber = table.Column<string>(type: "longtext", nullable: true),
+                    city = table.Column<string>(type: "longtext", nullable: true),
+                    phoneNumber = table.Column<string>(type: "longtext", nullable: true),
+                    email = table.Column<string>(type: "longtext", nullable: true),
+                    dateOfBirth = table.Column<DateTime>(type: "datetime(6)", nullable: false),
+                    isEmployee = table.Column<bool>(type: "tinyint(1)", nullable: false),
+                    flowerShopId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -169,15 +169,15 @@ namespace FlowerChainAPI.Migrations
                 name: "Supplier",
                 columns: table => new
                 {
-                    id = table.Column<int>(nullable: false)
+                    id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
-                    shopName = table.Column<string>(nullable: true),
-                    streetName = table.Column<string>(nullable: true),
-                    postalCode = table.Column<string>(nullable: true),
-                    houseNumber = table.Column<string>(nullable: true),
-                    city = table.Column<string>(nullable: true),
-                    phoneNumber = table.Column<string>(nullable: true),
-                    email = table.Column<string>(nullable: true)
+                    shopName = table.Column<string>(type: "longtext", nullable: true),
+                    streetName = table.Column<string>(type: "longtext", nullable: true),
+                    postalCode = table.Column<string>(type: "longtext", nullable: true),
+                    houseNumber = table.Column<string>(type: "longtext", nullable: true),
+                    city = table.Column<string>(type: "longtext", nullable: true),
+                    phoneNumber = table.Column<string>(type: "longtext", nullable: true),
+                    email = table.Column<string>(type: "longtext", nullable: true)
                 },
                 constraints: table =>
                 {

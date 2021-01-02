@@ -1,11 +1,16 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using System.Configuration;
 using FlowerChainAPI.Database;
+using FlowerChainAPI.Models;
 using FlowerChainAPI.Models.Domain;
+using FlowerChainAPI.Models.Web;
 using FlowerChainAPI.Repositories;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
+using System.Linq;
+using Microsoft.AspNetCore.Http;
 
 namespace FlowerChainAPI.Controller
 {
@@ -29,34 +34,79 @@ namespace FlowerChainAPI.Controller
          
          //Get FlowerChainAPI/Order
          [HttpGet]
+         [ProducesResponseType(typeof(IEnumerable<OrderWebOutput>), StatusCodes.Status200OK)]
          public async Task<IActionResult> GetOrders()
          {
              _logger.LogInformation("Getting all orders");
-             return  Ok(await _orders.GetAllOrdersAsync());
+             var orders = (await _orders.GetAllOrders()).Select(x => x.Convert()).ToList();
+             return  Ok(orders);
          }
 
          [HttpGet("{id}")]
-         public async Task<IActionResult> GetOrderById(int id)
-         {
-             _logger.LogInformation("Getting a flowershop by id");
-             return Ok(await _orders.GetOrderByIdAsync(id));
-         }
+        [ProducesResponseType(typeof(OrderWebOutput), StatusCodes.Status200OK)]
+        public async Task<IActionResult> OrderById(int id)
+        {
+            _logger.LogInformation("Getting orders by id", id);
+            try{
+                var order = await _orders.GetOneOrderById(id);
+                return order == null ? (IActionResult) NotFound() : Ok(order.Convert());
+            }
+            catch(NotFoundException)
+            {
+                return NotFound();
+            }
+            
+        }
 
-        //Post FlowerChainAPI/Order
-         [HttpPost]
-         public async Task<IActionResult> Postorder(Order order)
-         {
-             _logger.LogInformation("Posting an order");
-             return Ok(await _orders.CreateOrderAsync(order));
-         }
+        [HttpPost]
+        [ProducesResponseType(typeof(OrderWebOutput),StatusCodes.Status201Created)]
+        [ProducesDefaultResponseType]
+        public async Task<IActionResult> CreateOrder(OrderUpsertInput input)
+        {
+            _logger.LogInformation("Creating an order", input);
+            var persistedOrder = await _orders.Insert(input.id, input.dateTimeOrder, input.personId);
+            return Created($"/orders/{persistedOrder.id}", persistedOrder.Convert());
+        }
 
-         //Delete FlowerChainAPI/Order
-         [HttpDelete]
-         public async Task<IActionResult> DeleteOrder(int id)
-         {
-             _logger.LogInformation("Deleting an order");
-             return Ok(await _orders.DeleteOrderAsync(id));
-         }
+         [HttpPatch("{id}")]
+        [ProducesResponseType(StatusCodes.Status202Accepted)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesDefaultResponseType]
+        public async Task<IActionResult> UpdateOrder(int id, OrderUpsertInput input)
+        {
+            _logger.LogInformation("Updating an order", input);
+            
+            try
+            {
+                await _orders.Update(input.id, input.dateTimeOrder, input.personId);
+                return Accepted();
+            }
+            catch (NotFoundException)
+            {
+                // we only catch the NotFoundException; only catch exceptions you explicitly want to behave different from the regular handling.
+                return NotFound();
+            }
+        }
+
+        [HttpDelete("{id}")]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesDefaultResponseType]
+        public async Task<IActionResult> DeleteOder(int id)
+        {
+            _logger.LogInformation("Deleting an order", id);
+            try
+            {
+                await _orders.Delete(id);
+               return NoContent();
+            }
+            catch (NotFoundException)
+            {
+                return NotFound();
+            }
+        }
+
+        
        
         
 

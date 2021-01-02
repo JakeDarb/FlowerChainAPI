@@ -5,7 +5,7 @@ namespace FlowerChainAPI.Models.Web
     // This is incoming data
     // Debatable whether or not this is a good idea; normally you should split the POST/PUT messages.
     // However, since name is the only data we can change we reuse the class everywhere.
-    public class FlowerBouquetUpsertInput
+    public class FlowerShopUpsertInput
     {
         // This is called "Model validation"
         // you can find more info @ https://docs.microsoft.com/en-us/aspnet/core/mvc/models/validation?view=aspnetcore-3.1#validation-attributes
@@ -13,11 +13,13 @@ namespace FlowerChainAPI.Models.Web
         [Required]
         
         public int id { get; set; }
-
         [StringLength(1000)]
-        public string bouquetName{get;set;}
-        public double price { get; set; }
-        public int  amountSold { get; set; }
-        public string description {get;set;}
+        public string shopName { get; set; }
+        public string streetName { get; set; }
+        public string houseNumber { get; set; }
+        public string city { get; set; }
+        public string postalCode { get; set; }
+        public string phoneNumber { get; set; }
+        public string email { get; set; }
     }
-    }
+}

@@ -10,9 +10,10 @@ namespace FlowerChainAPI.Repositories
 
     public interface IOrderRepository
     {
-        Task<List<Order>> GetAllOrdersAsync();
-        Task<Order> CreateOrderAsync(Order order);
-        Task<Order> DeleteOrderAsync(int id);
-        Task<Order> GetOrderByIdAsync(int id);
+        Task<IEnumerable<Order>> GetAllOrders();
+        Task<Order> GetOneOrderById(int id);
+        Task Delete(int id);
+        Task<Order> Insert(int Id, string DateTimeOrder, string PersonId);
+        Task<Order> Update(int Id, string DateTimeOrder, string PersonId);
     }
 }

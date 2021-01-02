@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-
+using FlowerChainAPI.Models;
 using FlowerChainAPI.Database;
 using FlowerChainAPI.Models.Domain;
 using Microsoft.AspNetCore.Mvc;
@@ -20,41 +20,55 @@ namespace FlowerChainAPI.Repositories
             _context = context;
         }
 
-        public async Task<Order> CreateOrderAsync(Order order)
-        {
-            _context.Order.Add(order);
-            await _context.SaveChangesAsync();
-
-            return order;
-
-            
-        }
-
-        public async Task<Order> DeleteOrderAsync(int id)
-        {
-            var orderItem = _context.Order.Find(id);
-            
-                
-                _context.Order.Remove(orderItem);
-                await _context.SaveChangesAsync();
-
-                return orderItem;
-
-            
-        }
-
-        public async Task<List<Order>> GetAllOrdersAsync()
+        public async Task<IEnumerable<Order>> GetAllOrders()
         {
             return await _context.Order.ToListAsync();
         }
-
-        public async Task<Order> GetOrderByIdAsync(int id)
+        public async Task<Order> GetOneOrderById(int id)
         {
-           return await _context.Order.FirstOrDefaultAsync(x => x.id == id);
+            return await _context.Order.FindAsync(id);
         }
 
-        
-    }
+        public async Task Delete(int id)
+        {
+            var order = await _context.Order.FindAsync(id);
+            if (order == null)
+            {
+                throw new NotFoundException();
+            }
+
+            _context.Order.Remove(order);
+            await _context.SaveChangesAsync();
+        }
+
+        public async Task<Order> Insert(int Id, string DateTimeOrder, string PersonId)
+        {
+            var order = new Order
+            {
+                id = Id,
+                dateTimeOrder = DateTimeOrder,
+                personId = PersonId
+            };
+            await _context.Order.AddAsync(order);
+            await _context.SaveChangesAsync();
+            return order;
+        }
+
+        public async Task<Order> Update(int Id, string DateTimeOrder, string PersonId)
+        {
+            var order = await _context.Order.FindAsync(Id);
+            if (order == null)
+            {
+                throw new NotFoundException();
+            }
+
+            order.id = Id;
+            order.dateTimeOrder = DateTimeOrder;
+            order.personId = PersonId;
+            await _context.SaveChangesAsync();
+            return order;
+        }
 
 
+}
 }
