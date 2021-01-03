@@ -4,6 +4,7 @@ using Xunit;
 using FlowerChainAPI.Controller;
 using FlowerChainAPI.Models;
 using FlowerChainAPI.Models.Domain;
+using FlowerChainAPI.Models.Web;
 using FlowerChainAPI.Repositories;
 using FluentAssertions;
 using Microsoft.AspNetCore.Mvc;
@@ -85,6 +86,105 @@ namespace FlowerChainAPI.Test.Unit
             // used a lot in jest (for JS)
             Snapshot.Match(bouquetsResponse);
             }
+
+            [Fact]
+            public async Task TestGetOnBouquetHappyPath(){
+
+                var Bouquet = new FlowerBouquet()
+                {
+                    id = 1,
+                    bouquetName = "test name 1",
+                    price = 123,
+                    amountSold = 1,
+                    description = "test description 1"
+                };
+                _flowerBouquetRepoMock.Setup(x => x.GetOneBouquetById(1)).Returns(Task.FromResult(Bouquet)).Verifiable();
+                var bouquetsResponse = await _flowerBouquetController.FlowerBouquetById(1);
+                bouquetsResponse.Should().BeOfType<OkObjectResult>();
+                Snapshot.Match(bouquetsResponse);
+            }
+
+            [Fact]
+            public async Task TestGetOnBouquetNotFound(){
+
+        
+                _flowerBouquetRepoMock.Setup(x => x.GetOneBouquetById(1)).Returns(Task.FromResult(null as FlowerBouquet)).Verifiable();
+                var bouquetsResponse = await _flowerBouquetController.FlowerBouquetById(1);
+                bouquetsResponse.Should().BeOfType<NotFoundResult>();
+                Snapshot.Match(bouquetsResponse);
+            }
+
+
+            [Fact]
+           public async Task TestInsertOneBouquet(){
+               var bouquet = new FlowerBouquet
+               {
+                   id = 1,
+                    bouquetName = "test name 1",
+                    price = 123,
+                    amountSold = 1,
+                    description = "test description 1"
+               };
+               _flowerBouquetRepoMock.Setup(x => x.Insert(1,"test name", 456,2,"test description 2")).Returns(Task.FromResult(bouquet)).Verifiable();
+               var bouquetResponse = await _flowerBouquetController.CreateFlowerBouquet(new FlowerBouquetPostUpsertInput()
+               {
+                   id = 1,
+                    bouquetName = "test name",
+                    price = 456,
+                    amountSold = 2,
+                    description = "test description 2"
+
+               });
+               bouquetResponse.Should().BeOfType<CreatedResult>();
+               Snapshot.Match(bouquetResponse);
+           }
+
+           [Fact]
+           public async Task TestUpdateOneBouquetHappyPath()
+           {
+               var bouquet = new FlowerBouquet()
+               {
+                    id = 1,
+                    bouquetName = "test name 1",
+                    price = 123,
+                    amountSold = 1,
+                    description = "test description 1"
+               };
+                _flowerBouquetRepoMock.Setup(x => x.Update(1,"test name", 456,2,"test description 2")).Returns(Task.FromResult(bouquet)).Verifiable();
+                var bouquetResponse = await _flowerBouquetController.UpdateFlowerBouquet(1,new FlowerBouquetPatchUpsertInput()
+               {
+                   
+                    bouquetName = "test name",
+                    price = 456,
+                    amountSold = 2,
+                    description = "test description 2"
+
+               });
+               bouquetResponse.Should().BeOfType<AcceptedResult>();
+               Snapshot.Match(bouquetResponse);
+           }
+
+           [Fact]
+           public async Task TestUpdateOneBouquetNotFound()
+           {
+               _flowerBouquetRepoMock.Setup(x => x.Update(1,"test name", 456,2,"test description 2")).Throws<NotFoundException>().Verifiable();
+                var bouquetResponse = await _flowerBouquetController.UpdateFlowerBouquet(1,new FlowerBouquetPatchUpsertInput()
+               {
+                   
+                    bouquetName = "test name",
+                    price = 456,
+                    amountSold = 2,
+                    description = "test description 2"
+
+               });
+               bouquetResponse.Should().BeOfType<NotFoundResult>();
+               Snapshot.Match(bouquetResponse);
+           }
+
+
+
+
+
         }
 
 

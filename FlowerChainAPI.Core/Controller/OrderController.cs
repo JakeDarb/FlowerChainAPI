@@ -61,7 +61,7 @@ namespace FlowerChainAPI.Controller
         [HttpPost]
         [ProducesResponseType(typeof(OrderWebOutput),StatusCodes.Status201Created)]
         [ProducesDefaultResponseType]
-        public async Task<IActionResult> CreateOrder(OrderUpsertInput input)
+        public async Task<IActionResult> CreateOrder(OrderPostUpsertInput input)
         {
             _logger.LogInformation("Creating an order", input);
             var persistedOrder = await _orders.Insert(input.id, input.dateTimeOrder, input.personId);
@@ -72,13 +72,13 @@ namespace FlowerChainAPI.Controller
         [ProducesResponseType(StatusCodes.Status202Accepted)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesDefaultResponseType]
-        public async Task<IActionResult> UpdateOrder(int id, OrderUpsertInput input)
+        public async Task<IActionResult> UpdateOrder(int id, OrderPatchUpsertInput input)
         {
             _logger.LogInformation("Updating an order", input);
             
             try
             {
-                await _orders.Update(input.id, input.dateTimeOrder, input.personId);
+                await _orders.Update(id, input.dateTimeOrder, input.personId);
                 return Accepted();
             }
             catch (NotFoundException)

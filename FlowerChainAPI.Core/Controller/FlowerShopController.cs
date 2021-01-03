@@ -54,7 +54,7 @@ namespace FlowerChainAPI.Controller
         [HttpPost]
         [ProducesResponseType(typeof(FlowerShopWebOutput),StatusCodes.Status201Created)]
         [ProducesDefaultResponseType]
-        public async Task<IActionResult> CreateFlowerShop(FlowerShopUpsertInput input)
+        public async Task<IActionResult> CreateFlowerShop(FlowerShopPostUpsertInput input)
         {
             _logger.LogInformation("Creating a flowershop", input);
             try{
@@ -72,13 +72,13 @@ namespace FlowerChainAPI.Controller
         [ProducesResponseType(StatusCodes.Status202Accepted)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesDefaultResponseType]
-        public async Task<IActionResult> UpdateFlowerShop(int id, FlowerShopUpsertInput input)
+        public async Task<IActionResult> UpdateFlowerShop(int id, FlowerShopPatchUpsertInput input)
         {
             _logger.LogInformation("Updating a flowershop", input);
             
             try
             {
-                await _shops.Update(input.id, input.shopName, input.streetName, input.houseNumber, input.city, input.postalCode, input.phoneNumber, input.email);
+                await _shops.Update(id, input.shopName, input.streetName, input.houseNumber, input.city, input.postalCode, input.phoneNumber, input.email);
                 return Accepted();
             }
             catch (NotFoundException)

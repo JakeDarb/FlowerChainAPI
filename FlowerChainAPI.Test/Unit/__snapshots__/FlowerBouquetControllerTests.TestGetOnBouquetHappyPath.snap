@@ -1,0 +1,13 @@
+﻿{
+  "Value": {
+    "id": 1,
+    "bouquetName": "test name 1",
+    "price": 123.0,
+    "amountSold": 1,
+    "description": "test description 1"
+  },
+  "Formatters": [],
+  "ContentTypes": [],
+  "DeclaredType": null,
+  "StatusCode": 200
+}
