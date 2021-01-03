@@ -8,18 +8,18 @@
       "description": "test description 1"
     },
     {
-      "id": 1,
-      "bouquetName": "test name 1",
-      "price": 123.0,
-      "amountSold": 1,
-      "description": "test description 1"
+      "id": 2,
+      "bouquetName": "test name 2",
+      "price": 456.0,
+      "amountSold": 2,
+      "description": "test description 2"
     },
     {
-      "id": 1,
-      "bouquetName": "test name 1",
-      "price": 123.0,
-      "amountSold": 1,
-      "description": "test description 1"
+      "id": 3,
+      "bouquetName": "test name 3",
+      "price": 789.0,
+      "amountSold": 3,
+      "description": "test description 3"
     }
   ],
   "Formatters": [],

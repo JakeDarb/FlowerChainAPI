@@ -20,11 +20,11 @@ namespace FlowerChainAPI.Controller
      public class FlowerShopController : ControllerBase
      {
          
-         private readonly ILogger<FlowerChainContext> _logger;
+         private readonly ILogger<FlowerShopController> _logger;
          private readonly IFlowerShopRepository _shops;
          
 
-        public FlowerShopController(IFlowerShopRepository shops , ILogger<FlowerChainContext> logger) {
+        public FlowerShopController(IFlowerShopRepository shops , ILogger<FlowerShopController> logger) {
             
             _logger = logger;
             _shops = shops;

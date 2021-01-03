@@ -1,0 +1,12 @@
+﻿{
+  "Location": "/orders/1",
+  "Value": {
+    "id": 1,
+    "dateTimeOrder": "testdatetime 1",
+    "personId": "testpersonid 1"
+  },
+  "Formatters": [],
+  "ContentTypes": [],
+  "DeclaredType": null,
+  "StatusCode": 201
+}

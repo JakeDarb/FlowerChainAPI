@@ -1,0 +1,17 @@
+﻿{
+  "Location": "/shops/1",
+  "Value": {
+    "id": 1,
+    "shopName": "testshopname 1",
+    "streetName": "teststreetname 1",
+    "houseNumber": "testhousenumber 1",
+    "city": "testcity 1",
+    "postalCode": "testpostalcode 1",
+    "phoneNumber": "testphonenumber 1",
+    "email": "testemail 1"
+  },
+  "Formatters": [],
+  "ContentTypes": [],
+  "DeclaredType": null,
+  "StatusCode": 201
+}

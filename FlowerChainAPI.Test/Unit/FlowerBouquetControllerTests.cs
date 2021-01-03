@@ -58,20 +58,20 @@ namespace FlowerChainAPI.Test.Unit
                 },
                 new FlowerBouquet
                 {
-                   id = 1,
-                    bouquetName = "test name 1",
-                    price = 123,
-                    amountSold = 1,
-                    description = "test description 1" 
+                   id = 2,
+                    bouquetName = "test name 2",
+                    price = 456,
+                    amountSold = 2,
+                    description = "test description 2" 
                 },
                 new FlowerBouquet
                 {
-                    id = 1,
-                    bouquetName = "test name 1",
-                    price = 123,
-                    amountSold = 1,
-                    description = "test description 1"
-                },
+                    id = 3,
+                    bouquetName = "test name 3",
+                    price = 789,
+                    amountSold = 3,
+                    description = "test description 3"
+                }
             };
             // Arrange
             _flowerBouquetRepoMock.Setup(x => x.GetAllBouquets()).Returns(Task.FromResult((IEnumerable<FlowerBouquet>)returnSet)).Verifiable();
@@ -88,9 +88,9 @@ namespace FlowerChainAPI.Test.Unit
             }
 
             [Fact]
-            public async Task TestGetOnBouquetHappyPath(){
+            public async Task TestGetOnFlowerBouquetHappyPath(){
 
-                var Bouquet = new FlowerBouquet()
+                var bouquet = new FlowerBouquet()
                 {
                     id = 1,
                     bouquetName = "test name 1",
@@ -98,14 +98,14 @@ namespace FlowerChainAPI.Test.Unit
                     amountSold = 1,
                     description = "test description 1"
                 };
-                _flowerBouquetRepoMock.Setup(x => x.GetOneBouquetById(1)).Returns(Task.FromResult(Bouquet)).Verifiable();
+                _flowerBouquetRepoMock.Setup(x => x.GetOneBouquetById(1)).Returns(Task.FromResult(bouquet)).Verifiable();
                 var bouquetsResponse = await _flowerBouquetController.FlowerBouquetById(1);
                 bouquetsResponse.Should().BeOfType<OkObjectResult>();
                 Snapshot.Match(bouquetsResponse);
             }
 
             [Fact]
-            public async Task TestGetOnBouquetNotFound(){
+            public async Task TestGetOnFlowerBouquetNotFound(){
 
         
                 _flowerBouquetRepoMock.Setup(x => x.GetOneBouquetById(1)).Returns(Task.FromResult(null as FlowerBouquet)).Verifiable();
@@ -116,7 +116,7 @@ namespace FlowerChainAPI.Test.Unit
 
 
             [Fact]
-           public async Task TestInsertOneBouquet(){
+           public async Task TestInsertOneFlowerBouquet(){
                var bouquet = new FlowerBouquet
                {
                    id = 1,
@@ -140,7 +140,7 @@ namespace FlowerChainAPI.Test.Unit
            }
 
            [Fact]
-           public async Task TestUpdateOneBouquetHappyPath()
+           public async Task TestUpdateOneFlowerBouquetHappyPath()
            {
                var bouquet = new FlowerBouquet()
                {
@@ -165,7 +165,7 @@ namespace FlowerChainAPI.Test.Unit
            }
 
            [Fact]
-           public async Task TestUpdateOneBouquetNotFound()
+           public async Task TestUpdateOneFlowerBouquetNotFound()
            {
                _flowerBouquetRepoMock.Setup(x => x.Update(1,"test name", 456,2,"test description 2")).Throws<NotFoundException>().Verifiable();
                 var bouquetResponse = await _flowerBouquetController.UpdateFlowerBouquet(1,new FlowerBouquetPatchUpsertInput()

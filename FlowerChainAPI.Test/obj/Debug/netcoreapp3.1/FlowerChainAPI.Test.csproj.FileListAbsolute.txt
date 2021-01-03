@@ -177,3 +177,6 @@ C:\api\FlowerChainAPI\FlowerChainAPI.Test\obj\Debug\netcoreapp3.1\staticwebasset
 C:\api\FlowerChainAPI\FlowerChainAPI.Test\obj\Debug\netcoreapp3.1\FlowerChainAPI.Test.dll
 C:\api\FlowerChainAPI\FlowerChainAPI.Test\obj\Debug\netcoreapp3.1\FlowerChainAPI.Test.pdb
 C:\api\FlowerChainAPI\FlowerChainAPI.Test\obj\Debug\netcoreapp3.1\FlowerChainAPI.Test.genruntimeconfig.cache
+C:\api\FlowerChainAPI\FlowerChainAPI.Test\bin\Debug\netcoreapp3.1\Microsoft.EntityFrameworkCore.InMemory.dll
+C:\api\FlowerChainAPI\FlowerChainAPI.Test\bin\Debug\netcoreapp3.1\System.Text.Encodings.Web.dll
+C:\api\FlowerChainAPI\FlowerChainAPI.Test\bin\Debug\netcoreapp3.1\runtimes\linux-mips64\native\libe_sqlite3.so

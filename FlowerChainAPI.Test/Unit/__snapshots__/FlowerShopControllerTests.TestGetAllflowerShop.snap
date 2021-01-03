@@ -1,0 +1,38 @@
+﻿{
+  "Value": [
+    {
+      "id": 1,
+      "shopName": "testshopname 1",
+      "streetName": "teststreetname 1",
+      "houseNumber": "testhousenumber 1",
+      "city": "testcity 1",
+      "postalCode": "testpostalcode 1",
+      "phoneNumber": "testphonenumber 1",
+      "email": "testemail 1"
+    },
+    {
+      "id": 2,
+      "shopName": "testshopname 2",
+      "streetName": "teststreetname 2",
+      "houseNumber": "testhousenumber 2",
+      "city": "testcity 2",
+      "postalCode": "testpostalcode 2",
+      "phoneNumber": "testphonenumber 2",
+      "email": "testemail 2"
+    },
+    {
+      "id": 3,
+      "shopName": "testshopname 3",
+      "streetName": "teststreetname 3",
+      "houseNumber": "testhousenumber 3",
+      "city": "testcity 3",
+      "postalCode": "testpostalcode 3",
+      "phoneNumber": "testphonenumber 3",
+      "email": "testemail 3"
+    }
+  ],
+  "Formatters": [],
+  "ContentTypes": [],
+  "DeclaredType": null,
+  "StatusCode": 200
+}

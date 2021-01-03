@@ -20,11 +20,11 @@ namespace FlowerChainAPI.Controller
      public class OrderController : ControllerBase
      {
          
-         private readonly ILogger<FlowerChainContext> _logger;
+         private readonly ILogger<OrderController> _logger;
          private readonly IOrderRepository _orders;
          
 
-        public OrderController(IOrderRepository orders , ILogger<FlowerChainContext> logger) {
+        public OrderController(IOrderRepository orders , ILogger<OrderController> logger) {
             
             _logger = logger;
             _orders = orders;
@@ -35,7 +35,7 @@ namespace FlowerChainAPI.Controller
          //Get FlowerChainAPI/Order
          [HttpGet]
          [ProducesResponseType(typeof(IEnumerable<OrderWebOutput>), StatusCodes.Status200OK)]
-         public async Task<IActionResult> GetOrders()
+         public async Task<IActionResult> GetAllOrders()
          {
              _logger.LogInformation("Getting all orders");
              var orders = (await _orders.GetAllOrders()).Select(x => x.Convert()).ToList();
@@ -92,7 +92,7 @@ namespace FlowerChainAPI.Controller
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesDefaultResponseType]
-        public async Task<IActionResult> DeleteOder(int id)
+        public async Task<IActionResult> DeleteOrder(int id)
         {
             _logger.LogInformation("Deleting an order", id);
             try

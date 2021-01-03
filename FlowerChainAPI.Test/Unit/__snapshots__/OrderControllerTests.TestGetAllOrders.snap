@@ -1,0 +1,23 @@
+﻿{
+  "Value": [
+    {
+      "id": 1,
+      "dateTimeOrder": "testdatetime 1",
+      "personId": "testpersonid 1"
+    },
+    {
+      "id": 2,
+      "dateTimeOrder": "testdatetime 2",
+      "personId": "testpersonid 2"
+    },
+    {
+      "id": 3,
+      "dateTimeOrder": "testdatetime 3",
+      "personId": "testpersonid 3"
+    }
+  ],
+  "Formatters": [],
+  "ContentTypes": [],
+  "DeclaredType": null,
+  "StatusCode": 200
+}
