@@ -13,7 +13,7 @@ namespace FlowerChainAPI.Repositories
         Task<IEnumerable<Order>> GetAllOrders();
         Task<Order> GetOneOrderById(int id);
         Task Delete(int id);
-        Task<Order> Insert(int Id, string DateTimeOrder, string PersonId);
+        Task<Order> Insert(String DateTimeOrder, string PersonId);
         Task<Order> Update(int Id, string DateTimeOrder, string PersonId);
     }
 }

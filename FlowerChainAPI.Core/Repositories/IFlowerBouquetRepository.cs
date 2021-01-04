@@ -13,7 +13,7 @@ namespace FlowerChainAPI.Repositories
         Task<IEnumerable<FlowerBouquet>> GetAllBouquets();
         Task<FlowerBouquet> GetOneBouquetById(int id);
         Task Delete(int id);
-        Task<FlowerBouquet> Insert(int Id, string BouquetName, double Price, int AmountSold, string Description);
+        Task<FlowerBouquet> Insert(string BouquetName, double Price, int AmountSold, string Description);
         Task<FlowerBouquet> Update(int Id, string BouquetName, double Price, int AmountSold, string Description);
     }
 }

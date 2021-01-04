@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 namespace FlowerChainAPI.Models.Web
 {
     
-    public class OrderPatchUpsertInput
+    public class OrderUpsertInput
     {
         
         [Required]

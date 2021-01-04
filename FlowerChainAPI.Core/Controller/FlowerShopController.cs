@@ -54,11 +54,11 @@ namespace FlowerChainAPI.Controller
         [HttpPost]
         [ProducesResponseType(typeof(FlowerShopWebOutput),StatusCodes.Status201Created)]
         [ProducesDefaultResponseType]
-        public async Task<IActionResult> CreateFlowerShop(FlowerShopPostUpsertInput input)
+        public async Task<IActionResult> CreateFlowerShop(FlowerShopUpsertInput input)
         {
             _logger.LogInformation("Creating a flowershop", input);
             try{
-                var persistedShop = await _shops.Insert(input.id, input.shopName, input.streetName, input.houseNumber, input.city, input.postalCode, input.phoneNumber, input.email);
+                var persistedShop = await _shops.Insert(input.shopName, input.streetName, input.houseNumber, input.city, input.postalCode, input.phoneNumber, input.email);
                 return Created($"/shops/{persistedShop.id}", persistedShop.Convert());
             }
             catch(NotFoundException)
@@ -72,7 +72,7 @@ namespace FlowerChainAPI.Controller
         [ProducesResponseType(StatusCodes.Status202Accepted)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesDefaultResponseType]
-        public async Task<IActionResult> UpdateFlowerShop(int id, FlowerShopPatchUpsertInput input)
+        public async Task<IActionResult> UpdateFlowerShop(int id, FlowerShopUpsertInput input)
         {
             _logger.LogInformation("Updating a flowershop", input);
             

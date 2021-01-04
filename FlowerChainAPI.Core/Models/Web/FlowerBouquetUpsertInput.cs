@@ -2,8 +2,8 @@ using System.ComponentModel.DataAnnotations;
 
 namespace FlowerChainAPI.Models.Web
 {
-    
-    public class FlowerBouquetPatchUpsertInput
+   
+    public class FlowerBouquetUpsertInput
     {
         
         [Required]

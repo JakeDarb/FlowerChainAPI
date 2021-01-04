@@ -43,11 +43,11 @@ namespace FlowerChainAPI.Repositories
             await _context.SaveChangesAsync();
         }
 
-        public async Task<FlowerShop> Insert(int Id, string ShopName, string StreetName, string HouseNumber, string City, string PostalCode, string PhoneNumber, string Email)
+        public async Task<FlowerShop> Insert( string ShopName, string StreetName, string HouseNumber, string City, string PostalCode, string PhoneNumber, string Email)
         {
             var shop = new FlowerShop
             {
-                id = Id,
+                
                 shopName = ShopName,
                 streetName = StreetName,
                 houseNumber = HouseNumber,

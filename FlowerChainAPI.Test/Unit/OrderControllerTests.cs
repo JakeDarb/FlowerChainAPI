@@ -118,10 +118,10 @@ namespace FlowerChainAPI.Test.Unit
                     dateTimeOrder = "testdatetime 1",
                     personId = "testpersonid 1"
                };
-               _orderRepoMock.Setup(x => x.Insert(1,"testdatetime 1","testpersonid 1")).Returns(Task.FromResult(order)).Verifiable();
-               var orderResponse = await _orderController.CreateOrder(new OrderPostUpsertInput()
+               _orderRepoMock.Setup(x => x.Insert("testdatetime 1","testpersonid 1")).Returns(Task.FromResult(order)).Verifiable();
+               var orderResponse = await _orderController.CreateOrder(new OrderUpsertInput()
                {
-                    id = 1,
+                    
                     dateTimeOrder = "testdatetime 1",
                     personId = "testpersonid 1"
 
@@ -140,7 +140,7 @@ namespace FlowerChainAPI.Test.Unit
                     personId = "testpersonid 1"
                };
                 _orderRepoMock.Setup(x => x.Update(1,"testdatetime 1","testpersonid 1")).Returns(Task.FromResult(order)).Verifiable();
-                var orderResponse = await _orderController.UpdateOrder(1,new OrderPatchUpsertInput()
+                var orderResponse = await _orderController.UpdateOrder(1,new OrderUpsertInput()
                {
                    
                     dateTimeOrder = "testdatetime 1",
@@ -155,7 +155,7 @@ namespace FlowerChainAPI.Test.Unit
            public async Task TestUpdateOneOrderNotFound()
            {
                _orderRepoMock.Setup(x => x.Update(1,"testdatetime 1","testpersonid 1")).Throws<NotFoundException>().Verifiable();
-                var orderResponse = await _orderController.UpdateOrder(1,new OrderPatchUpsertInput()
+                var orderResponse = await _orderController.UpdateOrder(1,new OrderUpsertInput()
                {
                    
                     dateTimeOrder = "testdatetime 1",

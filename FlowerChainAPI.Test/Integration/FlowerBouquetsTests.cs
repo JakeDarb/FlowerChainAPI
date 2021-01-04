@@ -24,7 +24,7 @@ namespace FlowerChainAPI.Tests.Integration
         {
             var client = _factory.CreateClient();
             _factory.ResetAndSeedDatabase((db) => { });
-            var response = await client.GetAsync("/flowerbouquets");
+            var response = await client.GetAsync("flowerchainapi/flowerbouquet");
             response.EnsureSuccessStatusCode(); // Status Code 200-299
             Snapshot.Match(await response.Content.ReadAsStringAsync());
         }
@@ -38,7 +38,7 @@ namespace FlowerChainAPI.Tests.Integration
                 db.FlowerBouquet.Add(new FlowerBouquet() {id = 1, bouquetName = "test name 1", price = 123, amountSold = 1, description = "test description 1"});
                 db.FlowerBouquet.Add(new FlowerBouquet() {id = 2, bouquetName = "test name 2", price = 456, amountSold = 2, description = "test description 2"});
             });
-            var response = await client.GetAsync("/flowerbouquets");
+            var response = await client.GetAsync("flowerchainapi/flowerbouquet");
             response.EnsureSuccessStatusCode(); // Status Code 200-299
             Snapshot.Match(await response.Content.ReadAsStringAsync());
         }
@@ -48,7 +48,7 @@ namespace FlowerChainAPI.Tests.Integration
         {
             var client = _factory.CreateClient();
             _factory.ResetAndSeedDatabase((db) => { });
-            var response = await client.GetAsync("/flowerbouquet/1");
+            var response = await client.GetAsync("flowerchainapi/flowerbouquet/1");
             response.StatusCode.Should().Be(404);
         }
 
@@ -60,7 +60,7 @@ namespace FlowerChainAPI.Tests.Integration
             {
                 db.FlowerBouquet.Add(new FlowerBouquet() {id = 1, bouquetName = "test name 1", price = 123, amountSold = 1, description = "test description 1"});
             });
-            var response = await client.GetAsync("/flowerbouquet/1");
+            var response = await client.GetAsync("flowerchainapi/flowerbouquet/1");
             response.EnsureSuccessStatusCode(); // Status Code 200-299
             Snapshot.Match(await response.Content.ReadAsStringAsync());
         }
@@ -74,7 +74,7 @@ namespace FlowerChainAPI.Tests.Integration
                 db.FlowerBouquet.Add(new FlowerBouquet() {id = 1, bouquetName = "test name 1", price = 123, amountSold = 1, description = "test description 1"});
 
             });
-            var response = await client.DeleteAsync("/flowerbouquets/2");
+            var response = await client.DeleteAsync("flowerchainapi/flowerbouquet/2");
             response.StatusCode.Should().Be(404);
         }
 
@@ -87,11 +87,11 @@ namespace FlowerChainAPI.Tests.Integration
                 db.FlowerBouquet.Add(new FlowerBouquet() {id = 1, bouquetName = "test name 1", price = 123, amountSold = 1, description = "test description 1"});
 
             });
-            var beforeDeleteResponse = await client.GetAsync("/flowerbouquets/1");
+            var beforeDeleteResponse = await client.GetAsync("flowerchainapi/flowerbouquet/1");
             beforeDeleteResponse.EnsureSuccessStatusCode();
-            var deleteResponse = await client.DeleteAsync("/flowerbouquets/1");
+            var deleteResponse = await client.DeleteAsync("flowerchainapi/flowerbouquet/1");
             deleteResponse.EnsureSuccessStatusCode();
-            var afterDeleteResponse = await client.GetAsync("/flowerbouquets/1");
+            var afterDeleteResponse = await client.GetAsync("flowerchainapi/flowerbouquet/1");
             afterDeleteResponse.StatusCode.Should().Be(404);
         }
 
@@ -103,25 +103,24 @@ namespace FlowerChainAPI.Tests.Integration
 
             var request = new
             {
-                Body = new FlowerBouquetPostUpsertInput
+                Body = new FlowerBouquetUpsertInput
                 {
-                    id = 1,
+                    
                     bouquetName = "testbouquetname 1",
                     price = 123,
                     amountSold = 1,
                     description = "testdescription 1"
                 }
             };
-            var createResponse = await client.PostAsync("/flowerbouquets", ContentHelper.GetStringContent(request.Body));
+            var createResponse = await client.PostAsync("flowerchainapi/flowerbouquet", ContentHelper.GetStringContent(request.Body));
             createResponse.EnsureSuccessStatusCode();
             var body = JsonConvert.DeserializeObject<FlowerBouquetWebOutput>(await createResponse.Content.ReadAsStringAsync());
             body.Should().NotBeNull();
-            body.id.Should().Be(1);
             body.bouquetName.Should().Be("testbouquetname 1");
             body.price.Should().Be(123);
             body.amountSold.Should().Be(1);
             body.description.Should().Be("testdescription 1");
-            var getResponse = await client.GetAsync($"/flowerbouquets/{body.id}");
+            var getResponse = await client.GetAsync($"flowerchainapi/flowerbouquet/{body.id}");
             getResponse.EnsureSuccessStatusCode();
         }
 
@@ -133,16 +132,16 @@ namespace FlowerChainAPI.Tests.Integration
 
             var request = new
             {
-                Body = new FlowerBouquetPostUpsertInput
+                Body = new FlowerBouquetUpsertInput
                 {
-                    id = 1,
-                    bouquetName = "testbouquetname 1",
-                    price = 123,
-                    amountSold = 1,
-                    description = "testdescription 1"
+                    
+                    bouquetName = string.Empty,
+                    price = 0,
+                    amountSold = 0,
+                    description = string.Empty
                 }
             };
-            var createResponse = await client.PostAsync("/bouquets", ContentHelper.GetStringContent(request.Body));
+            var createResponse = await client.PostAsync("flowerchainapi/flowerbouquet", ContentHelper.GetStringContent(request.Body));
             createResponse.StatusCode.Should().Be(400);
         }
 
@@ -154,7 +153,7 @@ namespace FlowerChainAPI.Tests.Integration
 
             var request = new
             {
-                Body = new FlowerBouquetPatchUpsertInput
+                Body = new FlowerBouquetUpsertInput
                 {
                     bouquetName = "testbouquetname 1",
                     price = 123,
@@ -162,7 +161,7 @@ namespace FlowerChainAPI.Tests.Integration
                     description = "testdescription 1"
                 }
             };
-            var patchResponse = await client.PatchAsync("/flowerbouquets/1", ContentHelper.GetStringContent(request.Body));
+            var patchResponse = await client.PatchAsync("flowerchainapi/flowerbouquet/1", ContentHelper.GetStringContent(request.Body));
             patchResponse.StatusCode.Should().Be(404);
         }
 

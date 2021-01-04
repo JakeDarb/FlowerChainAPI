@@ -41,11 +41,11 @@ namespace FlowerChainAPI.Repositories
             await _context.SaveChangesAsync();
         }
 
-        public async Task<Order> Insert(int Id, string DateTimeOrder, string PersonId)
+        public async Task<Order> Insert(String DateTimeOrder, string PersonId)
         {
             var order = new Order
             {
-                id = Id,
+            
                 dateTimeOrder = DateTimeOrder,
                 personId = PersonId
             };

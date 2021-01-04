@@ -132,7 +132,7 @@ namespace FlowerChainAPI.Test.Unit
            public async Task TestInsertOneFlowerShop(){
                var shop = new FlowerShop
                {
-                   id = 1,
+                    id = 1,
                     shopName = "testshopname 1",
                     streetName = "teststreetname 1",
                     houseNumber = "testhousenumber 1",
@@ -141,10 +141,10 @@ namespace FlowerChainAPI.Test.Unit
                     phoneNumber = "testphonenumber 1",
                     email = "testemail 1"
                };
-               _flowerShopRepoMock.Setup(x => x.Insert(1,"testshopname 1", "teststreetname 1", "testhousenumber 1", "testcity 1", "testpostalcode 1", "testphonenumber 1", "testemail 1")).Returns(Task.FromResult(shop)).Verifiable();
-               var shopResponse = await _flowerShopController.CreateFlowerShop(new FlowerShopPostUpsertInput()
+               _flowerShopRepoMock.Setup(x => x.Insert("testshopname 1", "teststreetname 1", "testhousenumber 1", "testcity 1", "testpostalcode 1", "testphonenumber 1", "testemail 1")).Returns(Task.FromResult(shop)).Verifiable();
+               var shopResponse = await _flowerShopController.CreateFlowerShop(new FlowerShopUpsertInput()
                {
-                   id = 1,
+                   
                     shopName = "testshopname 1",
                     streetName = "teststreetname 1",
                     houseNumber = "testhousenumber 1",
@@ -173,7 +173,7 @@ namespace FlowerChainAPI.Test.Unit
                     email = "testemail 1"
                };
                 _flowerShopRepoMock.Setup(x => x.Update(1,"testshopname 1", "teststreetname 1", "testhousenumber 1", "testcity 1", "testpostalcode 1", "testphonenumber 1", "testemail 1")).Returns(Task.FromResult(shop)).Verifiable();
-                var shopResponse = await _flowerShopController.UpdateFlowerShop(1,new FlowerShopPatchUpsertInput()
+                var shopResponse = await _flowerShopController.UpdateFlowerShop(1,new FlowerShopUpsertInput()
                {
                    
                     shopName = "testshopname 1",
@@ -193,7 +193,7 @@ namespace FlowerChainAPI.Test.Unit
            public async Task TestUpdateOneFlowerShopNotFound()
            {
                _flowerShopRepoMock.Setup(x => x.Update(1,"testshopname 1", "teststreetname 1", "testhousenumber 1", "testcity 1", "testpostalcode 1", "testphonenumber 1", "testemail 1")).Throws<NotFoundException>().Verifiable();
-                var shopResponse = await _flowerShopController.UpdateFlowerShop(1,new FlowerShopPatchUpsertInput()
+                var shopResponse = await _flowerShopController.UpdateFlowerShop(1,new FlowerShopUpsertInput()
                {
                    
                     shopName = "testshopname 1",

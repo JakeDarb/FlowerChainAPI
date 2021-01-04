@@ -119,16 +119,16 @@ namespace FlowerChainAPI.Test.Unit
            public async Task TestInsertOneFlowerBouquet(){
                var bouquet = new FlowerBouquet
                {
-                   id = 1,
+                    id=1,
                     bouquetName = "test name 1",
                     price = 123,
                     amountSold = 1,
                     description = "test description 1"
                };
-               _flowerBouquetRepoMock.Setup(x => x.Insert(1,"test name", 456,2,"test description 2")).Returns(Task.FromResult(bouquet)).Verifiable();
-               var bouquetResponse = await _flowerBouquetController.CreateFlowerBouquet(new FlowerBouquetPostUpsertInput()
+               _flowerBouquetRepoMock.Setup(x => x.Insert("test name", 456,2,"test description 2")).Returns(Task.FromResult(bouquet)).Verifiable();
+               var bouquetResponse = await _flowerBouquetController.CreateFlowerBouquet(new FlowerBouquetUpsertInput()
                {
-                   id = 1,
+                    
                     bouquetName = "test name",
                     price = 456,
                     amountSold = 2,
@@ -151,7 +151,7 @@ namespace FlowerChainAPI.Test.Unit
                     description = "test description 1"
                };
                 _flowerBouquetRepoMock.Setup(x => x.Update(1,"test name", 456,2,"test description 2")).Returns(Task.FromResult(bouquet)).Verifiable();
-                var bouquetResponse = await _flowerBouquetController.UpdateFlowerBouquet(1,new FlowerBouquetPatchUpsertInput()
+                var bouquetResponse = await _flowerBouquetController.UpdateFlowerBouquet(1,new FlowerBouquetUpsertInput()
                {
                    
                     bouquetName = "test name",
@@ -168,7 +168,7 @@ namespace FlowerChainAPI.Test.Unit
            public async Task TestUpdateOneFlowerBouquetNotFound()
            {
                _flowerBouquetRepoMock.Setup(x => x.Update(1,"test name", 456,2,"test description 2")).Throws<NotFoundException>().Verifiable();
-                var bouquetResponse = await _flowerBouquetController.UpdateFlowerBouquet(1,new FlowerBouquetPatchUpsertInput()
+                var bouquetResponse = await _flowerBouquetController.UpdateFlowerBouquet(1,new FlowerBouquetUpsertInput()
                {
                    
                     bouquetName = "test name",

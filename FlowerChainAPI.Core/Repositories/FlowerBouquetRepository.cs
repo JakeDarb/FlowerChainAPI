@@ -42,11 +42,11 @@ namespace FlowerChainAPI.Repositories
             await _context.SaveChangesAsync();
         }
 
-        public async Task<FlowerBouquet> Insert(int Id, string BouquetName, double Price, int AmountSold, string Description)
+        public async Task<FlowerBouquet> Insert( string BouquetName, double Price, int AmountSold, string Description)
         {
             var bouquet = new FlowerBouquet
             {
-                id = Id,
+                
                 bouquetName = BouquetName,
                 price = Price,
                 amountSold = AmountSold,

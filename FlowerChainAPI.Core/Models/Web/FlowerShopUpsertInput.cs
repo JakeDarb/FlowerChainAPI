@@ -3,12 +3,11 @@ using System.ComponentModel.DataAnnotations;
 namespace FlowerChainAPI.Models.Web
 {
     
-    public class FlowerShopPostUpsertInput
+    public class FlowerShopUpsertInput
     {
         
         [Required]
         
-        public int id { get; set; }
         [StringLength(1000)]
         public string shopName { get; set; }
         public string streetName { get; set; }
