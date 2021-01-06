@@ -1,0 +1,26 @@
+﻿{
+  "Value": [
+    {
+      "id": 1,
+      "orderId": 1,
+      "flowerBouquetId": 1,
+      "amount": 1
+    },
+    {
+      "id": 2,
+      "orderId": 2,
+      "flowerBouquetId": 2,
+      "amount": 1
+    },
+    {
+      "id": 3,
+      "orderId": 3,
+      "flowerBouquetId": 3,
+      "amount": 1
+    }
+  ],
+  "Formatters": [],
+  "ContentTypes": [],
+  "DeclaredType": null,
+  "StatusCode": 200
+}

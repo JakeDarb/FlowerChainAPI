@@ -15,9 +15,9 @@ namespace FlowerChainAPI.Models
             return new FlowerShopWebOutput(input.id, input.shopName, input.streetName, input.houseNumber, input.city, input.postalCode, input.phoneNumber,input.email);
         }
 
-        public static OrderWebOutput Convert(this Order input)
+        public static FlowerBouquetOrderWebOutput Convert(this FlowerBouquetOrder input)
         {
-            return new OrderWebOutput(input.id, input.dateTimeOrder, input.personId);
+            return new FlowerBouquetOrderWebOutput(input.id, input.orderId, input.flowerBouquetId, input.amount);
         }
 
        

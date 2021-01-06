@@ -18,14 +18,14 @@ namespace FlowerChainAPI.Controller
     [Route("FlowerChainAPI/[controller]")]
      
 
-     public class OrderController : ControllerBase
+     public class FlowerBouquetOrderController : ControllerBase
      {
          
-         private readonly ILogger<OrderController> _logger;
-         private readonly IOrderRepository _orders;
+         private readonly ILogger<FlowerBouquetOrderController> _logger;
+         private readonly IFlowerBouquetOrderRepository _orders;
          
 
-        public OrderController(IOrderRepository orders , ILogger<OrderController> logger) {
+        public FlowerBouquetOrderController(IFlowerBouquetOrderRepository orders , ILogger<FlowerBouquetOrderController> logger) {
             
             _logger = logger;
             _orders = orders;
@@ -35,22 +35,22 @@ namespace FlowerChainAPI.Controller
          
         
          [HttpGet]
-         [ProducesResponseType(typeof(IEnumerable<OrderWebOutput>), StatusCodes.Status200OK)]
+         [ProducesResponseType(typeof(IEnumerable<FlowerBouquetOrderWebOutput>), StatusCodes.Status200OK)]
          public async Task<IActionResult> GetAllOrders()
          {
-             _logger.LogInformation("Getting all orders");
-             var orders = (await _orders.GetAllOrders()).Select(x => x.Convert()).ToList();
+             _logger.LogInformation("Getting all flowerbouquetorders");
+             var orders = (await _orders.GetAllFlowerBouquetOrders()).Select(x => x.Convert()).ToList();
              return  Ok(orders);
          }
 
         
          [HttpGet("{id}")]
-        [ProducesResponseType(typeof(OrderWebOutput), StatusCodes.Status200OK)]
-        public async Task<IActionResult> OrderById(int id)
+        [ProducesResponseType(typeof(FlowerBouquetOrderWebOutput), StatusCodes.Status200OK)]
+        public async Task<IActionResult> FlowerBouquetOrderById(int id)
         {
-            _logger.LogInformation("Getting orders by id", id);
+            _logger.LogInformation("Getting flowerbouquetorders by id", id);
             try{
-                var order = await _orders.GetOneOrderById(id);
+                var order = await _orders.GetOneFlowerBouquetOrderById(id);
                 return order == null ? (IActionResult) NotFound() : Ok(order.Convert());
             }
             catch(NotFoundException)
@@ -62,13 +62,20 @@ namespace FlowerChainAPI.Controller
 
         
         [HttpPost]
-        [ProducesResponseType(typeof(OrderWebOutput),StatusCodes.Status201Created)]
+        [ProducesResponseType(typeof(FlowerBouquetOrderWebOutput),StatusCodes.Status201Created)]
         [ProducesDefaultResponseType]
-        public async Task<IActionResult> CreateOrder(OrderUpsertInput input)
+        public async Task<IActionResult> CreateFlowerBouquetOrder(FlowerBouquetOrderUpsertInput input)
         {
-            _logger.LogInformation("Creating an order", input);
-            var persistedOrder = await _orders.Insert(input.dateTimeOrder, input.personId);
-            return Created($"/orders/{persistedOrder.id}", persistedOrder.Convert());
+            _logger.LogInformation("Creating an flowerbouquetorder", input);
+            try{
+                var persistedOrder = await _orders.Insert(input.orderId, input.flowerBouquetId, input.amount);
+            return Created($"/flowerbouquetorders/{persistedOrder.id}", persistedOrder.Convert());
+            }
+            catch(NotFoundException)
+            {
+                return NotFound();
+            }
+            
         }
 
         
@@ -76,13 +83,13 @@ namespace FlowerChainAPI.Controller
         [ProducesResponseType(StatusCodes.Status202Accepted)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesDefaultResponseType]
-        public async Task<IActionResult> UpdateOrder(int id, OrderUpsertInput input)
+        public async Task<IActionResult> UpdateFlowerBouquetOrder(int id, FlowerBouquetOrderUpsertInput input)
         {
-            _logger.LogInformation("Updating an order", input);
+            _logger.LogInformation("Updating an flowerbouquetorder", input);
             
             try
             {
-                await _orders.Update(id, input.dateTimeOrder, input.personId);
+                await _orders.Update(id, input.orderId, input.flowerBouquetId, input.amount);
                 return Accepted();
             }
             catch (NotFoundException)
@@ -96,9 +103,9 @@ namespace FlowerChainAPI.Controller
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesDefaultResponseType]
-        public async Task<IActionResult> DeleteOrder(int id)
+        public async Task<IActionResult> DeleteFlowerBouquetOrder(int id)
         {
-            _logger.LogInformation("Deleting an order", id);
+            _logger.LogInformation("Deleting an flowerbouquetorder", id);
             try
             {
                 await _orders.Delete(id);

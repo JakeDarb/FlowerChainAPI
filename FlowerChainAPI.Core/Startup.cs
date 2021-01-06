@@ -33,7 +33,7 @@ namespace FlowerChainAPI
            
            services.AddScoped<IFlowerBouquetRepository, FlowerBouquetRepository>();
            services.AddScoped<IFlowerShopRepository, FlowerShopRepository>();
-           services.AddScoped<IOrderRepository, OrderRepository>();
+           services.AddScoped<IFlowerBouquetOrderRepository, FlowerBouquetOrderRepository>();
 
            //database connection
            services.AddDbContextPool<FlowerChainContext>(    
