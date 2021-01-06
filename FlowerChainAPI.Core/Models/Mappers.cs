@@ -15,10 +15,10 @@ namespace FlowerChainAPI.Models
             return new FlowerShopWebOutput(input.id, input.shopName, input.streetName, input.houseNumber, input.city, input.postalCode, input.phoneNumber,input.email);
         }
 
-        public static FlowerBouquetOrderWebOutput Convert(this FlowerBouquetOrder input)
+        /*public static FlowerBouquetOrderWebOutput Convert(this FlowerBouquetOrder input)
         {
             return new FlowerBouquetOrderWebOutput(input.id, input.orderId, input.flowerBouquetId, input.amount);
-        }
+        }*/
 
        
     }

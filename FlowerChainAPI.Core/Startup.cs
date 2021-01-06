@@ -11,10 +11,13 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Pomelo.EntityFrameworkCore.MySql.Infrastructure;
 using FlowerChainAPI.Models;
+using FlowerChainAPI.Repositories;
 using FlowerChainAPI.Database;
 using Microsoft.Extensions.Logging;
 using FlowerChainAPI.Repositories;
 using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Options;
+
 
 namespace FlowerChainAPI
 {
@@ -29,11 +32,23 @@ namespace FlowerChainAPI
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
+
+           
+            services.Configure<FlowerChainDatabaseSettings>(
+                Configuration.GetSection(nameof(FlowerChainDatabaseSettings)));
+
+            services.AddSingleton<IFlowerChainDatabaseSettings>(sp =>
+                sp.GetRequiredService<IOptions<FlowerChainDatabaseSettings>>().Value);
+
+                services.AddSingleton<FlowerBouquetOrderRepository>();
+
+                
+
            services.AddMvc(option => option.EnableEndpointRouting = false).SetCompatibilityVersion(CompatibilityVersion.Latest); 
            
            services.AddScoped<IFlowerBouquetRepository, FlowerBouquetRepository>();
            services.AddScoped<IFlowerShopRepository, FlowerShopRepository>();
-           services.AddScoped<IFlowerBouquetOrderRepository, FlowerBouquetOrderRepository>();
+           
 
            //database connection
            services.AddDbContextPool<FlowerChainContext>(    
