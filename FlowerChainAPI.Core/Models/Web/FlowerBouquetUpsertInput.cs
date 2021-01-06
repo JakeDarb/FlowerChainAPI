@@ -11,11 +11,11 @@ namespace FlowerChainAPI.Models.Web
         public string bouquetName{get;set;}
 
         [Required]
-        [StringLength(1000)]
+        
         public double price { get; set; }
 
         [Required]
-        [StringLength(1000)]
+        
         public int  amountSold { get; set; }
 
         [Required]
