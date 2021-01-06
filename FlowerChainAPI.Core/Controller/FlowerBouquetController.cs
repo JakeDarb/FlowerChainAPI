@@ -14,8 +14,9 @@ using Microsoft.AspNetCore.Http;
 
 namespace FlowerChainAPI.Controller
 {
+    [ApiController]
     [Route("FlowerChainAPI/[controller]")]
-     [ApiController]
+     
 
      public class FlowerBouquetController : ControllerBase
      {
@@ -30,7 +31,6 @@ namespace FlowerChainAPI.Controller
             _bouquets = bouquets;
 
         } 
-         
          
          
          [HttpGet]
@@ -53,6 +53,7 @@ namespace FlowerChainAPI.Controller
             return bouquet == null ? (IActionResult) NotFound() : Ok(bouquet.Convert());
         }
 
+
         [HttpPost]
         [ProducesResponseType(typeof(FlowerBouquetWebOutput),StatusCodes.Status201Created)]
         [ProducesDefaultResponseType]
@@ -70,6 +71,7 @@ namespace FlowerChainAPI.Controller
             
         }
 
+
          [HttpPatch("{id}")]
         [ProducesResponseType(StatusCodes.Status202Accepted)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
@@ -85,10 +87,10 @@ namespace FlowerChainAPI.Controller
             }
             catch (NotFoundException)
             {
-                // we only catch the NotFoundException; only catch exceptions you explicitly want to behave different from the regular handling.
                 return NotFound();
             }
         }
+
 
         [HttpDelete("{id}")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]

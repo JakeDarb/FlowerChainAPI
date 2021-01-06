@@ -13,7 +13,6 @@ namespace FlowerChainAPI.Models.Web
 
         public int id { get; set; }
         public string dateTimeOrder { get; set; }
-
         public string personId{ get; set; }
     }
 }

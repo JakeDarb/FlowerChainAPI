@@ -14,8 +14,9 @@ using Microsoft.AspNetCore.Http;
 
 namespace FlowerChainAPI.Controller
 {
+    [ApiController]
     [Route("FlowerChainAPI/[controller]")]
-     [ApiController]
+     
 
      public class OrderController : ControllerBase
      {
@@ -32,7 +33,7 @@ namespace FlowerChainAPI.Controller
         } 
          
          
-         //Get FlowerChainAPI/Order
+        
          [HttpGet]
          [ProducesResponseType(typeof(IEnumerable<OrderWebOutput>), StatusCodes.Status200OK)]
          public async Task<IActionResult> GetAllOrders()
@@ -42,6 +43,7 @@ namespace FlowerChainAPI.Controller
              return  Ok(orders);
          }
 
+        
          [HttpGet("{id}")]
         [ProducesResponseType(typeof(OrderWebOutput), StatusCodes.Status200OK)]
         public async Task<IActionResult> OrderById(int id)
@@ -58,6 +60,7 @@ namespace FlowerChainAPI.Controller
             
         }
 
+        
         [HttpPost]
         [ProducesResponseType(typeof(OrderWebOutput),StatusCodes.Status201Created)]
         [ProducesDefaultResponseType]
@@ -68,6 +71,7 @@ namespace FlowerChainAPI.Controller
             return Created($"/orders/{persistedOrder.id}", persistedOrder.Convert());
         }
 
+        
          [HttpPatch("{id}")]
         [ProducesResponseType(StatusCodes.Status202Accepted)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
@@ -83,11 +87,11 @@ namespace FlowerChainAPI.Controller
             }
             catch (NotFoundException)
             {
-                // we only catch the NotFoundException; only catch exceptions you explicitly want to behave different from the regular handling.
                 return NotFound();
             }
         }
 
+        
         [HttpDelete("{id}")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]

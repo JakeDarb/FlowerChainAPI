@@ -7,11 +7,11 @@ namespace FlowerChainAPI.Models.Web
     {
         
         [Required]
-        
-        
-        
         [StringLength(1000)]
         public string dateTimeOrder { get; set; }
+
+        [Required]
+        [StringLength(1000)]
         public string personId{ get; set; }
     }
 }
