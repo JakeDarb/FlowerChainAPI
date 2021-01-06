@@ -1,0 +1,22 @@
+version: "3.1"
+
+services:
+  service:
+    build: .
+    ports:
+      - "8889:80"
+    environment:
+      CONNECTIONSTRINGS__GLOBALDATABASE: server=localhost;port=8889;user=root;password=root;database=FlowerChain
+
+  flowerchain:
+    image: mysql
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+    ports:
+      - "8889:80"
+    volumes:
+      - ./mysql/var/lib/mysql
+
+
+     
