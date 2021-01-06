@@ -8,7 +8,7 @@ namespace FlowerChainAPI.Models.Domain
     public class FlowerBouquetOrder
     {
         [BsonId]
-        
+        [BsonRepresentation(BsonType.ObjectId)]
         public string id { get; set; }
 
         public int orderId { get; set; }
