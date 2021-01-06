@@ -19,6 +19,7 @@ namespace FlowerChainAPI.Tests.Integration
             _factory = factory;
         }
 
+
         [Fact]
         public async Task GetFlowerBouquetsEndPointReturnsNoDataWhenDbIsEmpty()
         {
@@ -28,6 +29,7 @@ namespace FlowerChainAPI.Tests.Integration
             response.EnsureSuccessStatusCode(); // Status Code 200-299
             Snapshot.Match(await response.Content.ReadAsStringAsync());
         }
+
 
         [Fact]
         public async Task GetFlowerBouquetsEndPointReturnsSomeDataWhenDbIsNotEmpty()
@@ -43,6 +45,7 @@ namespace FlowerChainAPI.Tests.Integration
             Snapshot.Match(await response.Content.ReadAsStringAsync());
         }
 
+
         [Fact]
         public async Task GetFlowerBouquetById404IfDoesntExist()
         {
@@ -51,6 +54,7 @@ namespace FlowerChainAPI.Tests.Integration
             var response = await client.GetAsync("flowerchainapi/flowerbouquet/1");
             response.StatusCode.Should().Be(404);
         }
+
 
         [Fact]
         public async Task GetFlowerBouquetByIdReturnFlowerBouquetIfExists()
@@ -65,6 +69,7 @@ namespace FlowerChainAPI.Tests.Integration
             Snapshot.Match(await response.Content.ReadAsStringAsync());
         }
 
+
         [Fact]
         public async Task DeleteFlowerBouquetByIdReturns404IfDoesntExist()
         {
@@ -77,6 +82,7 @@ namespace FlowerChainAPI.Tests.Integration
             var response = await client.DeleteAsync("flowerchainapi/flowerbouquet/2");
             response.StatusCode.Should().Be(404);
         }
+
 
         [Fact]
         public async Task DeleteFlowerBouquetByIdReturnsDeletesIfExists()
@@ -94,6 +100,7 @@ namespace FlowerChainAPI.Tests.Integration
             var afterDeleteResponse = await client.GetAsync("flowerchainapi/flowerbouquet/1");
             afterDeleteResponse.StatusCode.Should().Be(404);
         }
+
 
         [Fact]
         public async Task InsertFlowerBouquetReturnsCorrectData()
@@ -124,6 +131,7 @@ namespace FlowerChainAPI.Tests.Integration
             getResponse.EnsureSuccessStatusCode();
         }
 
+
         [Fact]
         public async Task InsertFlowerBouquetThrowsErrorOnEmpty()
         {
@@ -145,6 +153,7 @@ namespace FlowerChainAPI.Tests.Integration
             createResponse.StatusCode.Should().Be(400);
         }
 
+
         [Fact]
         public async Task UpdateFlowerBouquetReturns404NonExisting()
         {
@@ -164,6 +173,6 @@ namespace FlowerChainAPI.Tests.Integration
             var patchResponse = await client.PatchAsync("flowerchainapi/flowerbouquet/1", ContentHelper.GetStringContent(request.Body));
             patchResponse.StatusCode.Should().Be(404);
         }
-
-}
+        
+    }
 }

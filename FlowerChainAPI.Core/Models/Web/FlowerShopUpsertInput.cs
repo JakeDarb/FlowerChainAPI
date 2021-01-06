@@ -33,7 +33,7 @@ namespace FlowerChainAPI.Models.Web
         [Required]
         [StringLength(1000)]
         public string email { get; set; }
-
-        
+         
     }
+
 }

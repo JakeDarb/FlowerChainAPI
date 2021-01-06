@@ -19,6 +19,7 @@ namespace FlowerChainAPI.Tests.Integration
             _factory = factory;
         }
 
+
         [Fact]
         public async Task GetOrdersEndPointReturnsNoDataWhenDbIsEmpty()
         {
@@ -28,6 +29,7 @@ namespace FlowerChainAPI.Tests.Integration
             response.EnsureSuccessStatusCode(); // Status Code 200-299
             Snapshot.Match(await response.Content.ReadAsStringAsync());
         }
+
 
         [Fact]
         public async Task GetOrdersEndPointReturnsSomeDataWhenDbIsNotEmpty()
@@ -43,6 +45,7 @@ namespace FlowerChainAPI.Tests.Integration
             Snapshot.Match(await response.Content.ReadAsStringAsync());
         }
 
+
         [Fact]
         public async Task GetOrderById404IfDoesntExist()
         {
@@ -51,6 +54,7 @@ namespace FlowerChainAPI.Tests.Integration
             var response = await client.GetAsync("flowerchainapi/order/1");
             response.StatusCode.Should().Be(404);
         }
+
 
         [Fact]
         public async Task GetOrderByIdReturnFlowerBouquetIfExists()
@@ -65,6 +69,7 @@ namespace FlowerChainAPI.Tests.Integration
             Snapshot.Match(await response.Content.ReadAsStringAsync());
         }
 
+
         [Fact]
         public async Task DeleteOrderByIdReturns404IfDoesntExist()
         {
@@ -76,6 +81,7 @@ namespace FlowerChainAPI.Tests.Integration
             var response = await client.DeleteAsync("flowerchainapi/order/2");
             response.StatusCode.Should().Be(404);
         }
+
 
         [Fact]
         public async Task DeleteOrderByIdReturnsDeletesIfExists()
@@ -93,6 +99,7 @@ namespace FlowerChainAPI.Tests.Integration
             var afterDeleteResponse = await client.GetAsync("flowerchainapi/order/1");
             afterDeleteResponse.StatusCode.Should().Be(404);
         }
+
 
         [Fact]
         public async Task InsertOrderReturnsCorrectData()
@@ -120,6 +127,7 @@ namespace FlowerChainAPI.Tests.Integration
             getResponse.EnsureSuccessStatusCode();
         }
 
+
         [Fact]
         public async Task InsertOrderThrowsErrorOnEmpty()
         {
@@ -139,6 +147,7 @@ namespace FlowerChainAPI.Tests.Integration
             createResponse.StatusCode.Should().Be(400);
         }
 
+
         [Fact]
         public async Task UpdateOrderReturns404NonExisting()
         {
@@ -157,5 +166,5 @@ namespace FlowerChainAPI.Tests.Integration
             patchResponse.StatusCode.Should().Be(404);
         }
 
-}
+    }
 }

@@ -82,7 +82,6 @@ namespace FlowerChainAPI.Repositories
             await _context.SaveChangesAsync();
             return shop;
         }
+
     }
-
-
 }

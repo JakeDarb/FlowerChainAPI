@@ -17,6 +17,8 @@ namespace FlowerChainAPI.Models.Web
         public double price { get; set; }
         public int  amountSold { get; set; }
         public string description {get;set;}
+        
     }
+
 }
 

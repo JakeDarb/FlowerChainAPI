@@ -41,9 +41,8 @@ namespace FlowerChainAPI.Test.Unit
             _orderRepoMock.Reset();
         }
 
+
         [Fact]
-        
-        
         public async Task TestGetAllOrders()
         {
             var returnSet = new[]
@@ -79,10 +78,9 @@ namespace FlowerChainAPI.Test.Unit
             // Assert
             orderResponse.Should().BeOfType<OkObjectResult>();
 
-            // verify via a snapshot (https://swisslife-oss.github.io/snapshooter/)
-            // used a lot in jest (for JS)
             Snapshot.Match(orderResponse);
             }
+
 
             [Fact]
             public async Task TestGetOnOrderHappyPath(){
@@ -98,6 +96,7 @@ namespace FlowerChainAPI.Test.Unit
                 orderResponse.Should().BeOfType<OkObjectResult>();
                 Snapshot.Match(orderResponse);
             }
+
 
             [Fact]
             public async Task TestGetOnOrderNotFound(){
@@ -130,6 +129,7 @@ namespace FlowerChainAPI.Test.Unit
                Snapshot.Match(orderResponse);
            }
 
+
            [Fact]
            public async Task TestUpdateOneOrderHappyPath()
            {
@@ -151,6 +151,7 @@ namespace FlowerChainAPI.Test.Unit
                Snapshot.Match(orderResponse);
            }
 
+
            [Fact]
            public async Task TestUpdateOneOrderNotFound()
            {
@@ -166,14 +167,5 @@ namespace FlowerChainAPI.Test.Unit
                Snapshot.Match(orderResponse);
            }
 
-           
-
-
-
-
-
-        }
-
-
-
+    }
 }

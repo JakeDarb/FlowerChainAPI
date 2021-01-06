@@ -16,4 +16,5 @@ namespace FlowerChainAPI.Repositories
         Task<FlowerShop> Insert(string ShopName, string StreetName, string HouseNumber, string City, string PostalCode, string PhoneNumber, string Email);
         Task<FlowerShop> Update(int Id, string ShopName, string StreetName, string HouseNumber, string City, string PostalCode, string PhoneNumber, string Email);
     }
+    
 }

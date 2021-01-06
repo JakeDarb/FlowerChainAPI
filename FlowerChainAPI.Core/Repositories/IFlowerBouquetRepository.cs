@@ -16,4 +16,5 @@ namespace FlowerChainAPI.Repositories
         Task<FlowerBouquet> Insert(string BouquetName, double Price, int AmountSold, string Description);
         Task<FlowerBouquet> Update(int Id, string BouquetName, double Price, int AmountSold, string Description);
     }
+    
 }

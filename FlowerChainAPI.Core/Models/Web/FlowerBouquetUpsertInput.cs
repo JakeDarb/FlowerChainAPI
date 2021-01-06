@@ -21,5 +21,7 @@ namespace FlowerChainAPI.Models.Web
         [Required]
         [StringLength(1000)]
         public string description {get;set;}
+        
     }
-    }
+
+}
