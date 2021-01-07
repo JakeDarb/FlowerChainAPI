@@ -11,6 +11,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace FlowerChainAPI.Repositories
 {
+    // Functions that the controller uses to function
     public class FlowerShopRepository : IFlowerShopRepository
     {
 

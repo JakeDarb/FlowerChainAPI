@@ -7,15 +7,12 @@ namespace FlowerChainAPI.Models.Web
     {
         
         [Required]
-        
         public int orderId {get;set;}
 
         [Required]
-        
         public int flowerBouquetId { get; set; }
 
         [Required]
-        
         public int amount { get; set; }
 
         

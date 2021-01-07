@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 
 namespace FlowerChainAPI.Repositories
 {
+    // Functions that the controller uses to function
     public class FlowerBouquetOrderRepository 
     {
         private readonly IMongoCollection<FlowerBouquetOrder> _flowerbouquetorder;

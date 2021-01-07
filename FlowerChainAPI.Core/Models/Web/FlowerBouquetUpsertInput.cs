@@ -11,11 +11,9 @@ namespace FlowerChainAPI.Models.Web
         public string bouquetName{get;set;}
 
         [Required]
-        
         public double price { get; set; }
 
         [Required]
-        
         public int  amountSold { get; set; }
 
         [Required]

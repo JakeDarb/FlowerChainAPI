@@ -7,7 +7,7 @@ using FlowerChainAPI.Models.Domain;
 
 namespace FlowerChainAPI.Repositories
 {
-
+    // Functions that the controller uses to function
     public interface IFlowerBouquetRepository
     {
         Task<IEnumerable<FlowerBouquet>> GetAllBouquets();

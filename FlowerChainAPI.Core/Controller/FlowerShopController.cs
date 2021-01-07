@@ -33,7 +33,7 @@ namespace FlowerChainAPI.Controller
         } 
          
          
-        
+        //Get all flower shops from the database
          [HttpGet]
          [ProducesResponseType(typeof(IEnumerable<FlowerShopWebOutput>), StatusCodes.Status200OK)]
          public async Task<IActionResult> GetAllFlowerShops()
@@ -43,7 +43,7 @@ namespace FlowerChainAPI.Controller
              return  Ok(shops);
          }
 
-        
+        // Get a flower shop by using an ID
          [HttpGet("{id}")]
         [ProducesResponseType(typeof(FlowerShopWebOutput), StatusCodes.Status200OK)]
         public async Task<IActionResult> FlowerShopById(int id)
@@ -53,7 +53,7 @@ namespace FlowerChainAPI.Controller
             return shop == null ? (IActionResult) NotFound() : Ok(shop.Convert());
         }
 
-        
+        // Creating a new flower shop in the database
         [HttpPost]
         [ProducesResponseType(typeof(FlowerShopWebOutput),StatusCodes.Status201Created)]
         [ProducesDefaultResponseType]
@@ -71,7 +71,7 @@ namespace FlowerChainAPI.Controller
             
         }
 
-
+        // Update a flower shop by using an ID
         [HttpPatch("{id}")]
         [ProducesResponseType(StatusCodes.Status202Accepted)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
@@ -91,7 +91,7 @@ namespace FlowerChainAPI.Controller
             }
         }
 
-
+        // Delete a flower shop by using an ID
         [HttpDelete("{id}")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]

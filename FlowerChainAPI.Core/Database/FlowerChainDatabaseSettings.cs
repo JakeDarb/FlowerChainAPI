@@ -1,5 +1,6 @@
 namespace FlowerChainAPI.Database
 {
+    // Changing settings for MongoDB
     public class FlowerChainDatabaseSettings : IFlowerChainDatabaseSettings
     {
         public string FlowerBouquetOrderCollectionName { get; set; }

@@ -32,7 +32,7 @@ namespace FlowerChainAPI.Controller
 
         } 
          
-         
+         //Get all flower bouquets from the database
          [HttpGet]
          [ProducesResponseType(typeof(IEnumerable<FlowerBouquetWebOutput>), StatusCodes.Status200OK)]
          public async Task<IActionResult> GetAllBouquets()
@@ -43,7 +43,7 @@ namespace FlowerChainAPI.Controller
              return  Ok(flowerbouquets);
          }
 
-        
+        // Get a flower bouquet by using an ID
          [HttpGet("{id}")]
         [ProducesResponseType(typeof(FlowerBouquetWebOutput), StatusCodes.Status200OK)]
         public async Task<IActionResult> FlowerBouquetById(int id)
@@ -53,7 +53,7 @@ namespace FlowerChainAPI.Controller
             return bouquet == null ? (IActionResult) NotFound() : Ok(bouquet.Convert());
         }
 
-
+        // Creating a new flower bouquet in the database
         [HttpPost]
         [ProducesResponseType(typeof(FlowerBouquetWebOutput),StatusCodes.Status201Created)]
         [ProducesDefaultResponseType]
@@ -71,7 +71,7 @@ namespace FlowerChainAPI.Controller
             
         }
 
-
+        // Update a flower bouquet by using an ID
         [HttpPatch("{id}")]
         [ProducesResponseType(StatusCodes.Status202Accepted)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
@@ -91,7 +91,7 @@ namespace FlowerChainAPI.Controller
             }
         }
 
-
+        // Delete a flower bouquet by using an ID
         [HttpDelete("{id}")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
