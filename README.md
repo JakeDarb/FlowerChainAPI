@@ -9,10 +9,10 @@ When you’ve created your database, enter “dotnet ef database update” in th
 We used MongoDB to keep track of our sales. To use MongoDB do the following
 -   Download the [MongoDB Community server](https://www.mongodb.com/try/download/community)
 -   Connect with database using the following information:
-    Hostname: localhost
-    Port: 27017 (or change the port on line 4 in the "appsettigns.json" file)
-    SRV RECORD: off
-    Authentication: None
+    - Hostname: localhost
+    - Port: 27017 (or change the port on line 4 in the "appsettigns.json" file)
+    - SRV RECORD: off
+    - Authentication: None
 
 ## Usage
 ### Launch swagger
