@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace FlowerChainAPI.Repositories
 {
-    public class FlowerBouquetOrderRepository
+    public class FlowerBouquetOrderRepository 
     {
         private readonly IMongoCollection<FlowerBouquetOrder> _flowerbouquetorder;
 
@@ -22,40 +22,43 @@ namespace FlowerChainAPI.Repositories
             _flowerbouquetorder = database.GetCollection<FlowerBouquetOrder>(settings.FlowerBouquetOrderCollectionName);
         }
 
-        public async Task<List<FlowerBouquetOrder>> GetAllOrders()
+        public async Task<IEnumerable<FlowerBouquetOrder>> GetAllOrders()
         {
            return await _flowerbouquetorder.Find(FlowerBouquetOrder => true).ToListAsync();
         }
 
         public async Task<FlowerBouquetOrder> GetOneOrderById(string Id)
         {
-             return await _flowerbouquetorder.FindSync<FlowerBouquetOrder>(FlowerBouquetOrder => FlowerBouquetOrder.id == Id).FirstOrDefaultAsync();
+            return await _flowerbouquetorder.Find<FlowerBouquetOrder>(FlowerBouquetOrder => FlowerBouquetOrder.id == Id).FirstOrDefaultAsync();
         }
         
-        public async Task<FlowerBouquetOrder> Insert(FlowerBouquetOrder flowerbouquetorder)
+        public async Task<FlowerBouquetOrder> Insert(int FlowerBouquetId, int OrderId, int Amount)
         {
-             await _flowerbouquetorder.InsertOneAsync(flowerbouquetorder);
-            return flowerbouquetorder;
+            var order = new FlowerBouquetOrder
+            {
+                
+                flowerBouquetId = FlowerBouquetId,
+                orderId = OrderId,
+                amount = Amount
+            };
+            
+            await _flowerbouquetorder.InsertOneAsync(order);
+            return order;
         }
 
         
         public async Task Update(string Id, FlowerBouquetOrder flowerBouquetOrderIn)
         {
-             await _flowerbouquetorder.ReplaceOneAsync(FlowerBouquetOrder => FlowerBouquetOrder.id == Id, flowerBouquetOrderIn);
+            await _flowerbouquetorder.ReplaceOneAsync(FlowerBouquetOrder => FlowerBouquetOrder.id == Id, flowerBouquetOrderIn);
 
+        }
+        
+        public async Task Delete(string Id)
+        {
+            await _flowerbouquetorder.DeleteOneAsync(FlowerBouquetOrder => FlowerBouquetOrder.id == Id);
+            
         }
 
         
-
-        public async Task Remove(FlowerBouquetOrder flowerBouquetOrderIn){
-            await _flowerbouquetorder.DeleteOneAsync(FlowerBouquetOrder => FlowerBouquetOrder.id == flowerBouquetOrderIn.id);
-        }
-           
-
-        public async Task Remove(string Id)
-        {
-            await _flowerbouquetorder.DeleteOneAsync(FlowerBouquetOrder => FlowerBouquetOrder.id == Id);
-        }
-           
     }
 }

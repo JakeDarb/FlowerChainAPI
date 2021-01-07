@@ -21,12 +21,12 @@ namespace FlowerChainAPI.Controller
      {
 
          private readonly ILogger<FlowerBouquetOrderController> _logger;
-         private readonly FlowerBouquetOrderRepository _flowerbouquetorder;
+         private readonly FlowerBouquetOrderRepository _flowerbouquetorders;
 
-         public FlowerBouquetOrderController(FlowerBouquetOrderRepository flowerbouquetorder , ILogger<FlowerBouquetOrderController> logger) {
+         public FlowerBouquetOrderController(FlowerBouquetOrderRepository flowerbouquetorders , ILogger<FlowerBouquetOrderController> logger) {
             
             _logger = logger;
-            _flowerbouquetorder = flowerbouquetorder;
+            _flowerbouquetorders = flowerbouquetorders;
 
         } 
 
@@ -35,20 +35,17 @@ namespace FlowerChainAPI.Controller
         public async Task<IActionResult> GetAllFlowerBouquetOrders()
         {
             _logger.LogInformation("Getting all flowerbouquetorders");
-            var orders = await _flowerbouquetorder.GetAllOrders();
+            var orders = await _flowerbouquetorders.GetAllOrders();
             return Ok(orders);
         }
             
-
-
-     
 
         [HttpGet("id:length(24)", Name = "GetFlowerBouquetOrder")]
         [ProducesResponseType(typeof(FlowerShopWebOutput), StatusCodes.Status200OK)]
         public async Task<ActionResult<FlowerBouquetOrder>> FlowerBouquetOrderById(string id)
         {
             _logger.LogInformation("Getting flowershop by id", id);
-            var order = await _flowerbouquetorder.GetOneOrderById(id);
+            var order = await _flowerbouquetorders.GetOneOrderById(id);
 
             if (order == null)
             {
@@ -61,11 +58,18 @@ namespace FlowerChainAPI.Controller
         [HttpPost]
         [ProducesResponseType(typeof(FlowerBouquetOrderWebOutput),StatusCodes.Status201Created)]
         [ProducesDefaultResponseType]
-        public async Task<ActionResult<FlowerBouquetOrder>> CreateFlowerBouquetOrder(FlowerBouquetOrder order)
+        public async Task<ActionResult<FlowerBouquetOrder>> CreateFlowerBouquetOrder(FlowerBouquetOrderUpsertInput input)
         {
-            _logger.LogInformation("Creating a flowerboquuetorder", order);
-            await _flowerbouquetorder.Insert(order);
-            return CreatedAtRoute("GetFlowerBouquetOrder", new { Id = order.id.ToString() }, order);
+            
+            _logger.LogInformation("Creating a flowerbouquetorder", input);
+            try{
+                var persistedOrder = await _flowerbouquetorders.Insert(input.flowerBouquetId, input.orderId, input.amount);
+                return Created($"/orders/{persistedOrder.id}", persistedOrder.Convert());
+            }
+            catch(NotFoundException)
+            {
+                return NotFound();
+            }
         }
 
 
@@ -77,7 +81,7 @@ namespace FlowerChainAPI.Controller
         {
             _logger.LogInformation("Updating a flowerbouquetorder", input);
             try{
-                await _flowerbouquetorder.Update(id, input);
+                await _flowerbouquetorders.Update(id, input);
                 return NoContent();
             }
             catch (NotFoundException)
@@ -95,7 +99,7 @@ namespace FlowerChainAPI.Controller
         {
             _logger.LogInformation("Deleting a flowershop", id);
             try{
-                await _flowerbouquetorder.Remove(id);
+                await _flowerbouquetorders.Delete(id);
                 return NoContent();
             }
             catch (NotFoundException)
