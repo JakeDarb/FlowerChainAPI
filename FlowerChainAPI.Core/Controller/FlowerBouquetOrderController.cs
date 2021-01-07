@@ -30,7 +30,7 @@ namespace FlowerChainAPI.Controller
 
      
 
-         [HttpGet("{id:length(24)}", Name = "GetFlowerBouquetOrder")]
+         [HttpGet("id:length(24)", Name = "GetFlowerBouquetOrder")]
         public ActionResult<FlowerBouquetOrder> Get(string Id)
         {
             var order = _flowerbouquetorder.Get(Id);
@@ -44,15 +44,16 @@ namespace FlowerChainAPI.Controller
         }
 
         [HttpPost]
-        public ActionResult<FlowerBouquetOrderRepository> Create(FlowerBouquetOrder order)
+        public ActionResult<FlowerBouquetOrder> Create(FlowerBouquetOrder order)
         {
             _flowerbouquetorder.Create(order);
+            
 
-            return CreatedAtRoute("GetFlowerBouquetOrder", new { id = order.id.ToString() }, order);
+            return CreatedAtRoute("GetFlowerBouquetOrder", new { Id = order.id.ToString() }, order);
         }
 
 
-        [HttpPut("{id:length(24)}")]
+        [HttpPut("id:length(24)")]
         public IActionResult Update(string Id, FlowerBouquetOrder flowerBouquetOrderIn)
         {
             var order = _flowerbouquetorder.Get(Id);
@@ -67,7 +68,7 @@ namespace FlowerChainAPI.Controller
             return NoContent();
         }
 
-        [HttpDelete("{id:length(24)}")]
+        [HttpDelete("id:length(24)")]
         public IActionResult Delete(string Id)
         {
             var order = _flowerbouquetorder.Get(Id);

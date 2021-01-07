@@ -14,7 +14,6 @@ using FlowerChainAPI.Models;
 using FlowerChainAPI.Repositories;
 using FlowerChainAPI.Database;
 using Microsoft.Extensions.Logging;
-using FlowerChainAPI.Repositories;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Options;
 

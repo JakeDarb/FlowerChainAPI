@@ -1,8 +1,11 @@
 using FlowerChainAPI.Models;
 using FlowerChainAPI.Models.Domain;
+using FlowerChainAPI.Database;
 using MongoDB.Driver;
 using System.Collections.Generic;
 using System.Linq;
+using MongoDB.Bson;
+using MongoDB.Bson.Serialization.Attributes;
 
 namespace FlowerChainAPI.Repositories
 {
@@ -36,7 +39,7 @@ namespace FlowerChainAPI.Repositories
         public void Remove(FlowerBouquetOrder flowerBouquetOrderIn) =>
             _flowerbouquetorder.DeleteOne(FlowerBouquetOrder => FlowerBouquetOrder.id == flowerBouquetOrderIn.id);
 
-        public void Remove(string id) => 
-            _flowerbouquetorder.DeleteOne(FlowerBouquetOrder => FlowerBouquetOrder.id == id);
+        public void Remove(string Id) => 
+            _flowerbouquetorder.DeleteOne(FlowerBouquetOrder => FlowerBouquetOrder.id == Id);
     }
 }

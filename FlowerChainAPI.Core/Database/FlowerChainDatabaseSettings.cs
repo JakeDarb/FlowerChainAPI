@@ -1,4 +1,4 @@
-namespace FlowerChainAPI.Models
+namespace FlowerChainAPI.Database
 {
     public class FlowerChainDatabaseSettings : IFlowerChainDatabaseSettings
     {
