@@ -7,7 +7,7 @@ Launch MAMP/XAMPP/something else and create a database called “FlowerChainAPI�
 When you’ve created your database, enter “dotnet ef database update” in the terminal. Data will be added.
 ### MongoDB
 We used MongoDB to keep track of our sales. To use MongoDB do the following
--   Download the [MongoDB Community server](https://www.mongodb.com/try/download/community
+-   Download the [MongoDB Community server](https://www.mongodb.com/try/download/community)
 -   Connect with database using the following information:
     Hostname: localhost
     Port: 27017 (or change the port on line 4 in the "appsettigns.json" file)
