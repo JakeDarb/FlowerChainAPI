@@ -1,9 +1,16 @@
+using System.Collections.Generic;
+using System.Threading.Tasks;
+using System.Configuration;
+using FlowerChainAPI.Database;
 using FlowerChainAPI.Models;
 using FlowerChainAPI.Models.Domain;
+using FlowerChainAPI.Models.Web;
 using FlowerChainAPI.Repositories;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
-using System.Collections.Generic;
+using System.Linq;
+using Microsoft.AspNetCore.Http;
 
 namespace FlowerChainAPI.Controller
 {
@@ -24,63 +31,77 @@ namespace FlowerChainAPI.Controller
         } 
 
         [HttpGet]
-        public ActionResult<List<FlowerBouquetOrder>> Get() =>
-            _flowerbouquetorder.Get();
+        [ProducesResponseType(typeof(IEnumerable<FlowerShopWebOutput>), StatusCodes.Status200OK)]
+        public async Task<IActionResult> GetAllFlowerBouquetOrders()
+        {
+            _logger.LogInformation("Getting all flowerbouquetorders");
+            var orders = await _flowerbouquetorder.GetAllOrders();
+            return Ok(orders);
+        }
+            
 
 
      
 
-         [HttpGet("id:length(24)", Name = "GetFlowerBouquetOrder")]
-        public ActionResult<FlowerBouquetOrder> Get(string Id)
+        [HttpGet("id:length(24)", Name = "GetFlowerBouquetOrder")]
+        [ProducesResponseType(typeof(FlowerShopWebOutput), StatusCodes.Status200OK)]
+        public async Task<ActionResult<FlowerBouquetOrder>> FlowerBouquetOrderById(string id)
         {
-            var order = _flowerbouquetorder.Get(Id);
+            _logger.LogInformation("Getting flowershop by id", id);
+            var order = await _flowerbouquetorder.GetOneOrderById(id);
 
             if (order == null)
             {
                 return NotFound();
             }
 
-            return order;
+            return Ok(order);
         }
-
+    
         [HttpPost]
-        public ActionResult<FlowerBouquetOrder> Create(FlowerBouquetOrder order)
+        [ProducesResponseType(typeof(FlowerBouquetOrderWebOutput),StatusCodes.Status201Created)]
+        [ProducesDefaultResponseType]
+        public async Task<ActionResult<FlowerBouquetOrder>> CreateFlowerBouquetOrder(FlowerBouquetOrder order)
         {
-            _flowerbouquetorder.Create(order);
-            
-
+            _logger.LogInformation("Creating a flowerboquuetorder", order);
+            await _flowerbouquetorder.Insert(order);
             return CreatedAtRoute("GetFlowerBouquetOrder", new { Id = order.id.ToString() }, order);
         }
 
 
-        [HttpPut("id:length(24)")]
-        public IActionResult Update(string Id, FlowerBouquetOrder flowerBouquetOrderIn)
+        [HttpPatch("id:length(24)")]
+        [ProducesResponseType(StatusCodes.Status202Accepted)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesDefaultResponseType]
+        public async Task<IActionResult> UpdateFlowerBouquetOrder(string id, FlowerBouquetOrder input)
         {
-            var order = _flowerbouquetorder.Get(Id);
-
-            if (order == null)
+            _logger.LogInformation("Updating a flowerbouquetorder", input);
+            try{
+                await _flowerbouquetorder.Update(id, input);
+                return NoContent();
+            }
+            catch (NotFoundException)
             {
                 return NotFound();
             }
-
-            _flowerbouquetorder.Update(Id, flowerBouquetOrderIn);
-
-            return NoContent();
+               
         }
 
         [HttpDelete("id:length(24)")]
-        public IActionResult Delete(string Id)
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesDefaultResponseType]
+        public async Task<IActionResult> DeleteFlowerBouquetOrder(string id)
         {
-            var order = _flowerbouquetorder.Get(Id);
-
-            if (order == null)
+            _logger.LogInformation("Deleting a flowershop", id);
+            try{
+                await _flowerbouquetorder.Remove(id);
+                return NoContent();
+            }
+            catch (NotFoundException)
             {
                 return NotFound();
             }
-
-            _flowerbouquetorder.Remove(order.id);
-
-            return NoContent();
         }
 
 
