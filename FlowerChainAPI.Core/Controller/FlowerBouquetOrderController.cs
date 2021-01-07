@@ -30,6 +30,7 @@ namespace FlowerChainAPI.Controller
 
         } 
 
+
         [HttpGet]
         [ProducesResponseType(typeof(IEnumerable<FlowerShopWebOutput>), StatusCodes.Status200OK)]
         public async Task<IActionResult> GetAllFlowerBouquetOrders()
@@ -55,6 +56,7 @@ namespace FlowerChainAPI.Controller
             return Ok(order);
         }
     
+
         [HttpPost]
         [ProducesResponseType(typeof(FlowerBouquetOrderWebOutput),StatusCodes.Status201Created)]
         [ProducesDefaultResponseType]
@@ -91,6 +93,7 @@ namespace FlowerChainAPI.Controller
                
         }
 
+
         [HttpDelete("id:length(24)")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
@@ -108,12 +111,5 @@ namespace FlowerChainAPI.Controller
             }
         }
 
-
      }
-
-
-
-
-
-
 }
