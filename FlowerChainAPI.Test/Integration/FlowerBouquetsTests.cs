@@ -10,7 +10,7 @@ using Xunit;
 
 namespace FlowerChainAPI.Tests.Integration
 {
-    // Testing if database works
+    
     public class FlowerBouquetsTests : IClassFixture<CustomWebApplicationFactory<Startup>>
     {
         private readonly CustomWebApplicationFactory<Startup> _factory;

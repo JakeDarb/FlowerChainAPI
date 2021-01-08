@@ -20,7 +20,7 @@ using Microsoft.AspNetCore.Http;
 
 namespace FlowerChainAPI.Test.Unit
 {
-    // Testing if the controller works
+    
     public class FlowerBouquetControllerTests : IDisposable
     {
         private readonly Mock<ILogger<FlowerBouquetController>> _loggerMock;
